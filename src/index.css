@@ -1,0 +1,173 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@theme {
+  --font-headline: "Epilogue", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #ff007a;
+  --color-primary-container: #ff007a;
+  --color-secondary: #008080;
+  --color-tertiary: #d4af37;
+  --color-surface: #ffffff;
+  --color-surface-blush: #FFF5F8;
+  --color-surface-container-low: #faf7f8;
+  --color-surface-container-high: #f0edef;
+  --color-surface-container-highest: #e5e2e4;
+  --color-on-surface: #0f0f0f;
+  --color-on-surface-variant: #555258;
+  --color-outline-variant: rgba(0, 0, 0, 0.06);
+
+  --radius-lg: 1.25rem;
+  --radius-xl: 2rem;
+
+  --shadow-ambient: 0 4px 24px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.06);
+  --shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.08);
+  --shadow-premium: 0 24px 64px rgba(255, 0, 122, 0.12);
+  --shadow-glow: 0 0 60px rgba(255, 0, 122, 0.15);
+  --shadow-hover: 0 20px 56px rgba(0, 0, 0, 0.10), 0 0 0 1px rgba(255, 0, 122, 0.04);
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline tracking-tight text-on-surface;
+  }
+
+  ::selection {
+    background: rgba(255, 0, 122, 0.15);
+  }
+}
+
+@layer components {
+  .glass-nav {
+    @apply bg-white/80 backdrop-blur-xl border-b border-black/[0.04];
+  }
+
+  .editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2.5rem;
+  }
+
+  .strategy-pill {
+    @apply bg-secondary/8 text-secondary px-5 py-2 rounded-full text-sm font-bold tracking-tight;
+  }
+
+  .browser-frame {
+    @apply rounded-2xl overflow-hidden border border-black/[0.06] bg-white;
+    box-shadow: var(--shadow-card);
+  }
+
+  .browser-header {
+    @apply h-10 bg-surface-container-high/80 flex items-center px-4 gap-2 border-b border-black/[0.04];
+  }
+
+  .browser-dot {
+    @apply w-2.5 h-2.5 rounded-full;
+  }
+
+  .section-spacing {
+    @apply py-28 md:py-36 lg:py-40;
+  }
+
+  .page-container {
+    @apply px-6 md:px-8 max-w-7xl mx-auto;
+  }
+
+  .section-label {
+    @apply flex items-center gap-3 mb-6;
+  }
+
+  .section-label-line {
+    @apply w-10 h-px bg-primary;
+  }
+
+  .section-label-text {
+    @apply text-primary font-bold uppercase tracking-[0.2em] text-xs;
+  }
+
+  .hero-glow-border {
+    position: relative;
+    border-radius: 1rem;
+    isolation: isolate;
+  }
+
+  .hero-glow-border::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--glow-angle, 0deg),
+      rgba(255, 0, 122, 0.5),
+      rgba(0, 128, 128, 0.4),
+      rgba(255, 0, 122, 0.08),
+      rgba(0, 128, 128, 0.4),
+      rgba(255, 0, 122, 0.5)
+    );
+    animation: glow-spin 8s linear infinite;
+    z-index: -2;
+    opacity: 0.7;
+    transition: opacity 0.6s ease;
+  }
+
+  .hero-glow-border:hover::before {
+    opacity: 1;
+  }
+
+  .hero-glow-border::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--glow-angle, 0deg),
+      rgba(255, 0, 122, 0.3),
+      rgba(0, 128, 128, 0.25),
+      transparent,
+      rgba(0, 128, 128, 0.25),
+      rgba(255, 0, 122, 0.3)
+    );
+    animation: glow-spin 8s linear infinite;
+    filter: blur(16px);
+    z-index: -3;
+    opacity: 0.6;
+    transition: opacity 0.6s ease;
+  }
+
+  .hero-glow-border:hover::after {
+    opacity: 1;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2.5 text-white font-bold rounded-full transition-all duration-300 ease-out;
+    background: linear-gradient(135deg, #ff007a 0%, #d6006e 50%, #c2185b 100%);
+    box-shadow: 0 4px 16px rgba(255, 0, 122, 0.2);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 8px 32px rgba(255, 0, 122, 0.3), 0 0 0 1px rgba(255, 0, 122, 0.08);
+    transform: scale(1.03);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.97);
+  }
+}
+
+@property --glow-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes glow-spin {
+  to {
+    --glow-angle: 360deg;
+  }
+}
