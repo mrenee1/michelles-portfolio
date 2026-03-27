@@ -1,14 +1,15 @@
 import { motion } from "motion/react";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { usePageMeta } from "@/src/lib/utils";
+import BrowserFrame from "@/src/components/BrowserFrame";
+import TiltCard from "@/src/components/TiltCard";
 
 const brandProject = {
   title: "Biz Boost Agency",
-  tag: "Agency Platform — Founded & Built by Michelle",
+  tag: "Agency Platform, Founded & Built by Michelle",
   description:
-    "The home base. Biz Boost Agency is where Michelle builds premium digital experiences and growth systems for businesses — while creating opportunities for developers to contribute, collaborate, and grow under a strong brand and strategic direction.",
+    "The home base. Biz Boost Agency is where Michelle builds sites that convert and growth systems for businesses, while creating opportunities for developers to contribute, collaborate, and grow under a strong brand and strategic direction.",
   url: "https://thebizboostagency.com/",
   color: "#ff007a",
 };
@@ -18,7 +19,7 @@ const projects = [
     title: "Creative Solutions Partners",
     tag: "Platform",
     description:
-      "At Creative Solutions Partners, she operates as a Strategic Partner and Digital Growth Director — leading digital growth across brand strategy, web development, marketing, content systems, automation, and AI-driven infrastructure to build scalable ecosystems that drive real business results.",
+      "At Creative Solutions Partners, she operates as a Strategic Partner and Digital Growth Director, leading initiatives across brand strategy, web development, marketing, content systems, automation, and AI-driven infrastructure to build scalable ecosystems that produce real business results.",
     url: "https://www.creativesolutionspartners.com/",
     color: "#008080",
     featured: true,
@@ -28,7 +29,7 @@ const projects = [
     tag: "Client + Partner Platform",
     badge: "System Build",
     description:
-      "A structured digital workspace designed to centralize client and partner operations — including project tracking, file management, communication, and resource access — within a clean, scalable interface. This platform demonstrates how organized systems and intuitive interfaces can reduce friction, improve visibility, and support more efficient collaboration across teams.",
+      "A structured digital workspace designed to centralize client and partner operations, including project tracking, file management, communication, and resource access, within a clean, scalable interface. This platform shows how organized systems and intuitive interfaces reduce friction, improve visibility, and support more efficient collaboration across teams.",
     url: "https://cspportal-newpartner.manus.space",
     preview: "/partner-workspace-dashboard.png",
     color: "#1e293b",
@@ -39,7 +40,7 @@ const projects = [
     tag: "AI Product",
     badge: "AI-Powered",
     description:
-      "An AI-powered tool that generates personalized technology stacks based on user input — helping builders, founders, and teams quickly identify the right tools, frameworks, and architecture for their projects. This product demonstrates the ability to combine user experience, logic, and AI-driven recommendations into a practical, scalable solution.",
+      "An AI-powered tool that generates personalized technology stacks based on user input, helping builders, founders, and teams quickly identify the right tools, frameworks, and architecture for their projects. It combines user experience, logic, and AI-driven recommendations into a practical, scalable solution.",
     url: "https://stackwise-ghw44nfo.manus.space",
     color: "#0d0d1a",
     featured: true,
@@ -69,7 +70,7 @@ const projects = [
     badge: "Industry Platform",
     elevated: true,
     description:
-      "A specialized booking and operations platform designed for hunting and fishing outfitters — combining reservations, client management, and experience coordination into one streamlined system. This platform demonstrates how industry-specific software can simplify operations, improve customer experience, and create scalable infrastructure for niche businesses.",
+      "A specialized booking and operations platform designed for hunting and fishing outfitters that combines reservations, client management, and experience coordination into one streamlined system. It shows how industry-specific software can simplify operations, improve customer experience, and create scalable infrastructure for niche businesses.",
     url: "https://bucknducks-j2fbqrr6.manus.space",
     color: "#2d3b2d",
     featured: false,
@@ -100,16 +101,63 @@ function BrandedFallback({ title, color }: { title: string; color: string }) {
 }
 
 function ProjectCard({ project, index, large = false }: ProjectCardProps) {
-  const [iframeFailed, setIframeFailed] = useState(false);
   const hasLiveUrl = project.url !== "#";
-  const displayUrl = project.url.replace(/https?:\/\//, "").replace(/\/$/, "");
   const isElevated = project.elevated;
+  const useTilt = large || isElevated;
 
   const aspect = large
     ? "aspect-[16/8] md:aspect-[16/7]"
     : isElevated
       ? "aspect-[16/9]"
       : "aspect-[16/10]";
+
+  const glowColor = project.color === "#008080"
+    ? "rgba(0, 128, 128, 0.3)"
+    : project.color === "#0d0d1a"
+      ? "rgba(100, 100, 255, 0.25)"
+      : `${project.color}55`;
+
+  const previewContent = project.preview ? (
+    <div className="browser-frame">
+      <div className={`browser-header ${isElevated ? "h-11" : ""}`}>
+        <div className="flex gap-2">
+          <div className="browser-dot bg-[#FF5F57]" />
+          <div className="browser-dot bg-[#FFBD2E]" />
+          <div className="browser-dot bg-[#28C840]" />
+        </div>
+        <div className="flex-1 mx-3 bg-[#3a3a3a]/30 rounded-md px-3 py-1">
+          <span className="text-[10px] text-on-surface-variant/50 font-medium truncate">
+            {project.title}
+          </span>
+        </div>
+      </div>
+      <div className={`overflow-hidden relative ${aspect}`}>
+        <img
+          src={project.preview}
+          alt={`${project.title} dashboard preview`}
+          className="absolute inset-0 w-full h-full object-cover object-top"
+        />
+        <span className="absolute bottom-3 right-3 z-[3] bg-black/40 backdrop-blur-sm text-white/80 text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-md pointer-events-none">
+          Dashboard View
+        </span>
+      </div>
+    </div>
+  ) : hasLiveUrl ? (
+    <BrowserFrame src={project.url} title={project.title} />
+  ) : (
+    <div className="browser-frame">
+      <div className="browser-header">
+        <div className="flex gap-2">
+          <div className="browser-dot bg-[#FF5F57]" />
+          <div className="browser-dot bg-[#FFBD2E]" />
+          <div className="browser-dot bg-[#28C840]" />
+        </div>
+      </div>
+      <div className={`overflow-hidden relative ${aspect}`}>
+        <BrandedFallback title={project.title} color={project.color} />
+      </div>
+    </div>
+  );
 
   return (
     <motion.div
@@ -119,59 +167,19 @@ function ProjectCard({ project, index, large = false }: ProjectCardProps) {
       transition={{ duration: 0.7, delay: index * 0.08 }}
       className={`group ${isElevated ? "md:col-span-2" : ""}`}
     >
-      <div
-        className={`browser-frame transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:shadow-hover ${
-          isElevated
-            ? "shadow-elevated ring-1 ring-black/[0.08] group-hover:scale-[1.03] group-hover:shadow-premium"
-            : ""
-        }`}
-      >
-        <div className={`browser-header ${isElevated ? "h-11" : ""}`}>
-          <div className="flex gap-2">
-            <div className="browser-dot bg-[#FF5F57]" />
-            <div className="browser-dot bg-[#FFBD2E]" />
-            <div className="browser-dot bg-[#28C840]" />
-          </div>
-          {(hasLiveUrl || isElevated) && (
-            <div className="flex-1 mx-4">
-              <div className="bg-white/60 rounded-md h-5 max-w-xs mx-auto flex items-center justify-center">
-                <span className="text-[10px] text-on-surface-variant/50 font-medium truncate px-3">
-                  {displayUrl}
-                </span>
-              </div>
-            </div>
-          )}
+      {useTilt ? (
+        <TiltCard
+          borderRadius={16}
+          glowColor={glowColor}
+          glowSize="50%"
+        >
+          {previewContent}
+        </TiltCard>
+      ) : (
+        <div className="transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:shadow-hover">
+          {previewContent}
         </div>
-        <div className={`overflow-hidden relative ${aspect}`}>
-          <BrandedFallback title={project.title} color={project.color} />
-
-          {project.preview ? (
-            <>
-              <img
-                src={project.preview}
-                alt={`${project.title} dashboard preview`}
-                className="absolute inset-0 w-full h-full object-cover object-top z-[1]"
-              />
-              <span className="absolute bottom-3 right-3 z-[3] bg-black/40 backdrop-blur-sm text-white/80 text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-md pointer-events-none">
-                Dashboard View
-              </span>
-            </>
-          ) : (
-            hasLiveUrl && !iframeFailed && (
-              <iframe
-                src={project.url}
-                title={project.title}
-                className="absolute inset-0 w-full h-full border-0 pointer-events-none z-[1]"
-                loading="lazy"
-                sandbox="allow-scripts allow-same-origin"
-                onError={() => setIframeFailed(true)}
-              />
-            )
-          )}
-
-          <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-        </div>
-      </div>
+      )}
 
       <div className="mt-8 md:mt-10">
         <div className="flex items-center gap-3 mb-3">
@@ -202,7 +210,7 @@ function ProjectCard({ project, index, large = false }: ProjectCardProps) {
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 bg-on-surface text-white px-6 py-3 rounded-full text-sm font-bold hover:shadow-premium transition-all duration-300 hover:[background:linear-gradient(135deg,#ff007a_0%,#d6006e_50%,#c2185b_100%)]"
+            className="inline-flex items-center gap-2.5 bg-surface-inverted text-white px-6 py-3 rounded-full text-sm font-bold hover:shadow-premium transition-all duration-300 hover:[background:linear-gradient(135deg,#ff007a_0%,#d6006e_50%,#c2185b_100%)]"
           >
             View Live Site <ExternalLink className="w-4 h-4" />
           </a>
@@ -217,7 +225,7 @@ function ProjectCard({ project, index, large = false }: ProjectCardProps) {
 }
 
 export default function Projects() {
-  usePageMeta("Projects", "Live projects, digital ecosystems, and growth engines built for real businesses — from agency platforms to AI-powered tools.");
+  usePageMeta("Projects", "Live projects, digital ecosystems, and growth engines built for real businesses: agency platforms, AI-powered tools, and more.");
 
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
@@ -252,8 +260,7 @@ export default function Projects() {
             transition={{ duration: 0.35, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg md:text-xl text-on-surface-variant max-w-2xl font-medium leading-relaxed"
           >
-            Live projects, digital ecosystems, and growth engines built for real
-            businesses. These aren't mockups — they are operational frameworks.
+            Live projects, digital ecosystems, and growth engines built for real businesses.
           </motion.p>
         </div>
       </section>
@@ -274,45 +281,13 @@ export default function Projects() {
               <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs">Founder Brand</span>
             </div>
 
-            <div className="hero-glow-border">
-            <div className="browser-frame ring-1 ring-white/[0.08] shadow-premium hover:shadow-glow hover:scale-[1.015] transition-all duration-500 ease-out relative z-[1]">
-              <div className="browser-header bg-[#141414] border-b-white/[0.06]">
-                <div className="flex gap-2">
-                  <div className="browser-dot bg-[#FF5F57]" />
-                  <div className="browser-dot bg-[#FFBD2E]" />
-                  <div className="browser-dot bg-[#28C840]" />
-                </div>
-                <div className="flex-1 mx-4">
-                  <div className="bg-white/10 rounded-md h-5 max-w-xs mx-auto flex items-center justify-center">
-                    <span className="text-[10px] text-white/40 font-medium truncate px-3">
-                      thebizboostagency.com
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="aspect-[16/7] md:aspect-[16/6] overflow-hidden relative">
-                <div
-                  className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
-                  style={{ background: `linear-gradient(135deg, ${brandProject.color}, ${brandProject.color}cc)` }}
-                >
-                  <span className="text-white/90 text-3xl md:text-5xl font-headline font-bold tracking-tight">
-                    {brandProject.title}
-                  </span>
-                  <span className="text-white/40 text-xs font-bold uppercase tracking-[0.25em] mt-4">
-                    Live Preview
-                  </span>
-                </div>
-                <iframe
-                  src={brandProject.url}
-                  title={brandProject.title}
-                  className="absolute inset-0 w-full h-full border-0 pointer-events-none z-[1]"
-                  loading="lazy"
-                  sandbox="allow-scripts allow-same-origin"
-                />
-                <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-              </div>
-            </div>
-            </div>
+            <TiltCard
+              borderRadius={12}
+              glowColor="rgba(255, 0, 122, 0.4)"
+              glowSize="45%"
+            >
+              <BrowserFrame src={brandProject.url} title={brandProject.title} />
+            </TiltCard>
 
             <div className="mt-10 md:mt-14 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
               <div className="max-w-2xl">

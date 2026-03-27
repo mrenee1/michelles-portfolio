@@ -9,7 +9,7 @@ const externalLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-black/[0.04] mt-0">
+    <footer className="border-t border-border mt-0">
       <div className="page-container py-16 flex flex-col gap-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-center md:text-left">
@@ -33,7 +33,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-black/[0.04] pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-3">
             {externalLinks.map((link) => (
               <a

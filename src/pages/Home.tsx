@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { ArrowRight, Target, Code2, Cpu, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePageMeta } from "@/src/lib/utils";
+import TiltCard from "@/src/components/TiltCard";
 
 const pillars = [
   {
@@ -20,8 +21,8 @@ const pillars = [
     icon: <Cpu className="w-7 h-7" />,
   },
   {
-    title: "AI-Driven Growth",
-    description: "Custom AI solutions that drive intelligence and efficiency.",
+    title: "AI-Powered Systems",
+    description: "Custom AI solutions that sharpen decision-making and cut overhead.",
     icon: <Zap className="w-7 h-7" />,
   },
 ];
@@ -30,11 +31,11 @@ const growthSteps = [
   { title: "Position the Brand", desc: "Define authority and market fit." },
   { title: "Build the Experience", desc: "Create high-conversion digital homes." },
   { title: "Streamline the Systems", desc: "Automate for scale and efficiency." },
-  { title: "Drive Growth", desc: "Execute data-driven scaling strategies." },
+  { title: "Scale Revenue", desc: "Execute data-driven strategies that increase pipeline and close rates." },
 ];
 
 export default function Home() {
-  usePageMeta(undefined, "Michelle Williams — Digital strategist, systems builder, and founder. 18+ years driving business growth through strategy, web development, automation, and AI.");
+  usePageMeta(undefined, "Michelle Williams: digital strategist, systems builder, and founder. 18+ years turning strategy, web development, automation, and AI into measurable business results.");
 
   return (
     <div className="pt-36 md:pt-44">
@@ -53,27 +54,42 @@ export default function Home() {
               <span className="section-label-text">Strategy &middot; Execution &middot; Systems</span>
             </div>
           </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[clamp(2.75rem,7.5vw,5rem)] font-headline font-extrabold leading-[1.08] tracking-tight text-on-surface mb-8"
-          >
-            I design and build digital systems that drive{" "}
-            <span className="text-primary">revenue and real business growth.</span>
-          </motion.h1>
+          <h1 className="text-[clamp(2.75rem,7.5vw,5rem)] font-headline font-extrabold leading-[1.08] tracking-tight text-on-surface mb-8">
+            {["I", "design", "and", "build", "digital", "systems", "that", "drive"].map((word, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.4, delay: 0.12 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block mr-[0.27em]"
+              >
+                {word}
+              </motion.span>
+            ))}
+            {["revenue", "and", "real", "business", "growth."].map((word, i) => (
+              <motion.span
+                key={`accent-${i}`}
+                initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.45, delay: 0.52 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block mr-[0.27em] text-primary"
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg md:text-xl text-on-surface-variant font-medium leading-relaxed mb-14 max-w-2xl"
           >
-            18+ years of sales leadership combined with a deep obsession for scalable technology, AI, and automation — turned into systems that actually move the needle.
+            18+ years of sales leadership combined with a deep obsession for scalable technology, AI, and automation, turned into systems that produce measurable results.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-wrap gap-4"
           >
             <a
@@ -84,7 +100,7 @@ export default function Home() {
             </a>
             <Link
               to="/contact"
-              className="bg-on-surface text-white px-8 py-4 rounded-full font-bold text-base hover:bg-on-surface/90 transition-all duration-300"
+              className="bg-surface-inverted text-white px-8 py-4 rounded-full font-bold text-base hover:bg-surface-inverted/90 transition-all duration-300"
             >
               Let's Build Something
             </Link>
@@ -107,7 +123,7 @@ export default function Home() {
             >
               <div className="relative w-full max-w-xs lg:max-w-none">
                 <div className="absolute -inset-12 bg-primary/8 rounded-full blur-[100px] pointer-events-none" />
-                <div className="relative rounded-2xl overflow-hidden shadow-elevated bg-white p-3 border border-black/[0.04]">
+                <div className="relative rounded-2xl overflow-hidden shadow-elevated bg-surface-card p-3 border border-border">
                   <img
                     alt="Michelle Williams"
                     className="w-full aspect-[4/5] object-cover rounded-xl"
@@ -133,10 +149,10 @@ export default function Home() {
               </h2>
               <div className="space-y-6 text-lg text-on-surface-variant font-medium leading-[1.8]">
                 <p>
-                  Michelle's career started where business meets people — on the sales floor. After nearly two decades leading high-performing teams at Verizon, Best Buy, and Apple, then selling enterprise solutions at Comcast Business, she developed an uncommon skill set: the ability to see a business from the customer's first touch all the way through the systems that power it.
+                  Michelle's career started where business meets people: on the sales floor. After nearly two decades leading high-performing teams at Verizon, Best Buy, and Apple, then selling enterprise solutions at Comcast Business, she developed an uncommon skill set. She sees a business from the customer's first touch all the way through the systems that power it.
                 </p>
                 <p>
-                  Today, she operates at the intersection of strategy, technology, and execution — serving as a Strategic Partner at Creative Solutions Partners while building her own agency, Biz Boost, from the ground up. Every system she architects is designed to do one thing: drive real, measurable business growth.
+                  Today, she operates at the intersection of strategy, technology, and execution, serving as a Strategic Partner at Creative Solutions Partners while building her own agency, Biz Boost, from the ground up. Every system she architects is designed to do one thing: generate real, measurable revenue.
                 </p>
               </div>
               <div className="mt-8">
@@ -181,7 +197,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="bg-surface-blush p-10 lg:p-12 rounded-2xl border border-black/[0.04] hover:border-primary/20 hover:shadow-card transition-all duration-500 group"
+                className="bg-surface-blush p-10 lg:p-12 rounded-2xl border border-border hover:border-primary/20 hover:shadow-card transition-all duration-500 group"
               >
                 <div className="w-16 h-16 rounded-xl bg-primary/8 text-primary flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500">
                   {pillar.icon}
@@ -199,7 +215,7 @@ export default function Home() {
       {/* ═══════════════════════════════════
           4. HOW I HELP BUSINESSES GROW
           ═══════════════════════════════════ */}
-      <section className="bg-on-surface section-spacing">
+      <section className="bg-surface-inverted section-spacing">
         <div className="page-container">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -216,7 +232,7 @@ export default function Home() {
               How I Help Businesses Grow
             </h2>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {growthSteps.map((step, i) => (
               <motion.div
                 key={step.title}
@@ -224,13 +240,21 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="space-y-4"
               >
-                <div className="text-primary font-headline text-7xl font-black opacity-25 leading-none">
-                  0{i + 1}
-                </div>
-                <h4 className="text-xl font-bold text-white">{step.title}</h4>
-                <p className="text-white/50 text-base leading-relaxed">{step.desc}</p>
+                <TiltCard
+                  borderRadius={16}
+                  glowColor="rgba(255, 0, 122, 0.2)"
+                  glowSize="60%"
+                  shineEnabled={true}
+                >
+                  <div className="bg-white/[0.04] border border-white/[0.06] rounded-2xl p-8 lg:p-10 space-y-5 h-full">
+                    <div className="text-primary font-headline text-6xl font-black opacity-20 leading-none">
+                      0{i + 1}
+                    </div>
+                    <h4 className="text-xl font-bold text-white">{step.title}</h4>
+                    <p className="text-white/50 text-base leading-relaxed">{step.desc}</p>
+                  </div>
+                </TiltCard>
               </motion.div>
             ))}
           </div>
@@ -258,7 +282,7 @@ export default function Home() {
               Real systems. Real results.
             </h2>
             <p className="text-xl text-on-surface-variant font-medium leading-relaxed mb-12 max-w-2xl mx-auto">
-              From my own agency to AI-powered tools and enterprise platforms — see the live products and systems I've built for real businesses.
+              From my own agency to AI-powered tools and enterprise platforms: see the live products and systems I've built for real businesses.
             </p>
             <Link
               to="/projects"

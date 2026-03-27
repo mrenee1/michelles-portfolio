@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import { cn } from "@/src/lib/utils";
+import { cn, useTheme } from "@/src/lib/utils";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 
 const navLinks = [
   { name: "Projects", path: "/projects" },
@@ -12,6 +12,7 @@ const navLinks = [
 export function Navbar() {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, toggle: toggleTheme } = useTheme();
 
   return (
     <nav className="fixed top-0 w-full z-50 glass-nav">
@@ -39,6 +40,13 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="p-2 rounded-full text-on-surface-variant hover:text-primary transition-colors duration-200 hover:bg-surface-container-high/60"
+          >
+            {theme === "light" ? <Moon className="w-[18px] h-[18px]" /> : <Sun className="w-[18px] h-[18px]" />}
+          </button>
           <Link
             to="/contact"
             className="btn-primary px-6 py-2.5 text-sm"
@@ -47,17 +55,26 @@ export function Navbar() {
           </Link>
         </div>
 
-        <button
-          className="md:hidden p-2 -mr-2 text-on-surface"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="flex md:hidden items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="p-2 rounded-full text-on-surface-variant hover:text-primary transition-colors"
+          >
+            {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+          </button>
+          <button
+            className="p-2 -mr-2 text-on-surface"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden bg-white border-t border-black/[0.04] px-6 pb-8 pt-4 space-y-1">
+        <div className="md:hidden border-t border-border px-6 pb-8 pt-4 space-y-1" style={{ background: "var(--mobile-bg)" }}>
           {navLinks.map((link) => (
             <Link
               key={link.path}

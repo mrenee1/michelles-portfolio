@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { usePageMeta } from "@/src/lib/utils";
 
 export default function Contact() {
-  usePageMeta("Contact", "Ready to streamline your systems, elevate your brand, or integrate AI into your workflow? Let's talk growth.");
+  usePageMeta("Contact", "Ready to streamline your systems, elevate your brand, or integrate AI into your workflow? Let's talk.");
 
   return (
     <div className="pt-36 md:pt-44 pb-0">
@@ -26,8 +26,8 @@ export default function Contact() {
             transition={{ duration: 0.4, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="text-[clamp(2.5rem,6vw,4.25rem)] font-headline font-extrabold leading-[1.1] tracking-tight text-on-surface mb-6 max-w-3xl"
           >
-            Let's build something that{" "}
-            <span className="text-primary">moves the needle.</span>
+            Let's build something{" "}
+            <span className="text-primary">worth talking about.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -72,11 +72,11 @@ export default function Contact() {
                 ))}
               </div>
 
-              <div className="bg-white p-8 rounded-2xl border border-black/[0.04] shadow-ambient">
+              <div className="bg-surface-card p-8 rounded-2xl border border-border shadow-ambient">
                 <h4 className="text-base font-bold text-on-surface mb-3">Office Hours</h4>
                 <p className="text-on-surface-variant font-medium text-sm leading-relaxed">
-                  Monday — Friday<br />
-                  9:00 AM — 6:00 PM EST
+                  Monday – Friday<br />
+                  9:00 AM – 6:00 PM EST
                 </p>
               </div>
             </motion.div>
@@ -90,7 +90,7 @@ export default function Contact() {
               className="col-span-12 lg:col-span-7"
             >
               <form
-                className="bg-white p-8 md:p-10 rounded-2xl border border-black/[0.04] shadow-card space-y-7"
+                className="bg-surface-card p-8 md:p-10 rounded-2xl border border-border shadow-card space-y-7"
                 onSubmit={(e) => e.preventDefault()}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -101,7 +101,7 @@ export default function Contact() {
                     <input
                       type="text"
                       placeholder="Your name"
-                      className="w-full bg-surface-blush border border-black/[0.06] rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium text-sm"
+                      className="w-full bg-surface-blush border border-border rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium text-sm"
                     />
                   </div>
                   <div className="space-y-2">
@@ -111,7 +111,7 @@ export default function Contact() {
                     <input
                       type="email"
                       placeholder="you@company.com"
-                      className="w-full bg-surface-blush border border-black/[0.06] rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium text-sm"
+                      className="w-full bg-surface-blush border border-border rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium text-sm"
                     />
                   </div>
                 </div>
@@ -120,11 +120,11 @@ export default function Contact() {
                   <label className="text-xs font-bold uppercase tracking-[0.15em] text-on-surface-variant">
                     How can I help?
                   </label>
-                  <select className="w-full bg-surface-blush border border-black/[0.06] rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium text-sm appearance-none">
+                  <select className="w-full bg-surface-blush border border-border rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium text-sm appearance-none">
                     <option>Brand Strategy</option>
                     <option>Web Design & Development</option>
                     <option>Automation & Systems</option>
-                    <option>AI-Driven Growth Tools</option>
+                    <option>AI-Powered Tools</option>
                     <option>Other</option>
                   </select>
                 </div>
@@ -136,7 +136,7 @@ export default function Contact() {
                   <textarea
                     rows={5}
                     placeholder="Tell me about your project..."
-                    className="w-full bg-surface-blush border border-black/[0.06] rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium text-sm resize-none"
+                    className="w-full bg-surface-blush border border-border rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium text-sm resize-none"
                   />
                 </div>
 

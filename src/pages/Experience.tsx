@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { usePageMeta } from "@/src/lib/utils";
 
 export default function Experience() {
-  usePageMeta("Experience", "18+ years of building, leading, and solving real problems — from consumer sales to enterprise strategy to digital systems that drive business growth.");
+  usePageMeta("Experience", "18+ years of building, leading, and solving real problems: from consumer sales to enterprise strategy to digital systems that generate measurable revenue.");
 
   return (
     <div className="pt-36 md:pt-44 pb-0">
@@ -36,7 +36,7 @@ export default function Experience() {
             transition={{ duration: 0.35, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg md:text-xl text-on-surface-variant font-medium leading-relaxed max-w-2xl"
           >
-            From the frontline of consumer sales to enterprise strategy to building the digital systems that drive modern business growth.
+            From the frontline of consumer sales to enterprise strategy to building the digital systems behind modern, high-performing businesses.
           </motion.p>
         </div>
       </section>
@@ -55,19 +55,19 @@ export default function Experience() {
             >
               <div className="space-y-7 text-lg md:text-xl text-on-surface-variant font-medium leading-[1.8]">
                 <p>
-                  Michelle's career started where business meets people — on the sales floor. At Verizon, Best Buy, and Apple, she developed a deep understanding of customer psychology, sales execution, and how high-performing teams operate. Those years built the foundation: how to read a room, close a deal, and drive consistent results.
+                  Michelle's career started where business meets people: on the sales floor. At Verizon, Best Buy, and Apple, she developed a deep understanding of customer psychology, sales execution, and how high-performing teams operate. Those years built the foundation: how to read a room, close a deal, and deliver consistent results.
                 </p>
                 <p>
-                  She later moved into the enterprise space at Comcast Business, where she worked with mid-market and enterprise clients, translating complex technology into real business outcomes. That experience expanded her perspective from transactions to systems — and how infrastructure drives growth.
+                  She later moved into the enterprise space at Comcast Business, where she worked with mid-market and enterprise clients, translating complex technology into real business outcomes. That experience expanded her perspective from transactions to systems, and how the right infrastructure turns operations into revenue.
                 </p>
                 <p>
                   Today, Michelle operates at the intersection of strategy, technology, and execution.
                 </p>
                 <p>
-                  At Creative Solutions Partners, she serves as a strategic partner leading digital growth initiatives — building and optimizing brand strategy, web experiences, automation systems, and AI-driven infrastructure that support scalable business growth.
+                  At Creative Solutions Partners, she serves as a strategic partner leading digital initiatives: building and optimizing brand strategy, web experiences, automation systems, and AI-driven infrastructure that support scalable, revenue-generating operations.
                 </p>
                 <p>
-                  Separately, she is the founder of Biz Boost Agency, where she builds premium digital experiences and growth systems for businesses while also creating opportunities for other developers to contribute, collaborate, and grow under a strong brand and strategic direction.
+                  Separately, she is the founder of Biz Boost Agency, where she builds sites that convert and growth systems for businesses while also creating opportunities for other developers to contribute, collaborate, and grow under a strong brand and strategic direction.
                 </p>
               </div>
 
@@ -76,10 +76,10 @@ export default function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="mt-12 bg-white p-8 md:p-10 rounded-2xl border-l-[6px] border-primary shadow-ambient"
+                className="mt-12 bg-surface-card p-8 md:p-10 rounded-2xl border-l-[6px] border-primary shadow-ambient"
               >
                 <p className="italic text-on-surface font-bold leading-relaxed text-xl md:text-2xl">
-                  "Real systems drive real business growth."
+                  "Real systems produce real business results."
                 </p>
               </motion.div>
 
@@ -100,7 +100,7 @@ export default function Experience() {
             >
               <div className="relative max-w-sm lg:max-w-none w-full">
                 <div className="absolute -inset-12 bg-primary/8 rounded-full blur-[100px] pointer-events-none" />
-                <div className="relative rounded-2xl overflow-hidden shadow-elevated bg-white p-3 border border-black/[0.04]">
+                <div className="relative rounded-2xl overflow-hidden shadow-elevated bg-surface-card p-3 border border-border">
                   <img
                     alt="Michelle Williams"
                     className="w-full aspect-[4/5] object-cover rounded-xl"
@@ -147,7 +147,7 @@ export default function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.06 }}
-                className="bg-surface-blush p-8 rounded-2xl border border-black/[0.03] hover:border-primary/15 transition-all duration-400"
+                className="bg-surface-blush p-8 rounded-2xl border border-border hover:border-primary/15 transition-all duration-400"
               >
                 <h4 className="font-bold text-base mb-3 text-on-surface">{strength.label}</h4>
                 <p className="text-on-surface-variant text-sm font-medium leading-relaxed">{strength.items}</p>
@@ -158,7 +158,7 @@ export default function Experience() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="bg-on-surface section-spacing">
+      <section className="bg-surface-inverted section-spacing">
         <div className="page-container text-center">
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
@@ -178,7 +178,7 @@ export default function Experience() {
             </Link>
             <Link
               to="/contact"
-              className="bg-white text-on-surface px-8 py-4 rounded-full font-bold hover:bg-white/90 transition-all duration-300"
+              className="bg-surface-card text-on-surface px-8 py-4 rounded-full font-bold hover:opacity-90 transition-all duration-300"
             >
               Get In Touch
             </Link>
