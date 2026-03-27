@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { ArrowRight, Target, Code2, Cpu, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePageMeta } from "@/src/lib/utils";
+import LightRays from "@/src/components/react-bits/LightRays";
 
 const pillars = [
   {
@@ -43,16 +44,6 @@ export default function Home() {
           ═══════════════════════════════════ */}
       <section className="page-container mb-0 pb-28 md:pb-36">
         <div className="max-w-[52rem]">
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="section-label">
-              <span className="section-label-line" />
-              <span className="section-label-text">Strategy &middot; Execution &middot; Systems</span>
-            </div>
-          </motion.div>
           <h1 className="text-[clamp(2.75rem,7.5vw,5rem)] font-headline font-extrabold leading-[1.08] tracking-tight text-on-surface mb-8">
             {["I", "design", "and", "build", "digital", "systems", "that", "drive"].map((word, i) => (
               <motion.span
@@ -110,8 +101,27 @@ export default function Home() {
       {/* ═══════════════════════════════════
           2. WHO I AM
           ═══════════════════════════════════ */}
-      <section className="bg-surface-blush section-spacing">
-        <div className="page-container">
+      <section className="relative overflow-hidden border border-surface-inverted/14 bg-surface-inverted section-spacing dark:border-surface-inverted/30">
+        <div
+          className="pointer-events-none absolute inset-0 z-0 opacity-[0.48] dark:opacity-[0.4]"
+          aria-hidden
+        >
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#ff007a"
+            raysSpeed={0.52}
+            lightSpread={3}
+            rayLength={1.24}
+            fadeDistance={1.2}
+            saturation={0.78}
+            followMouse={false}
+            mouseInfluence={0}
+            noiseAmount={0.02}
+            distortion={0}
+            className="min-h-[28rem] md:min-h-[32rem]"
+          />
+        </div>
+        <div className="page-container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
@@ -122,7 +132,7 @@ export default function Home() {
             >
               <div className="relative w-full max-w-xs lg:max-w-none">
                 <div className="absolute -inset-12 bg-primary/8 rounded-full blur-[100px] pointer-events-none" />
-                <div className="relative rounded-2xl overflow-hidden shadow-elevated bg-surface-card p-3 border border-border">
+                <div className="relative rounded-2xl overflow-hidden shadow-elevated bg-surface-card p-3 border border-surface-inverted/12 dark:border-surface-inverted/25">
                   <img
                     alt="Michelle Williams"
                     className="w-full aspect-[4/5] object-cover rounded-xl"
@@ -140,13 +150,12 @@ export default function Home() {
               className="lg:col-span-8"
             >
               <div className="section-label mb-8">
-                <span className="section-label-line" />
                 <span className="section-label-text">Who I Am</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-headline font-bold leading-tight mb-8">
+              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-headline font-bold leading-tight mb-8 text-white">
                 Operator. Builder. Strategist.
               </h2>
-              <div className="space-y-6 text-lg text-on-surface-variant font-medium leading-[1.8]">
+              <div className="space-y-6 text-lg font-medium leading-[1.8] text-white/88">
                 <p>
                   My career started where business meets people: on the sales floor. In 16+ years I've led high-performing teams at Verizon, Best Buy, and Apple, and I've sold enterprise solutions at Comcast Business. That path gave me an uncommon skill set: I see a business from the customer's first touch all the way through the systems that power it.
                 </p>
@@ -170,7 +179,7 @@ export default function Home() {
       {/* ═══════════════════════════════════
           3. WHAT I BRING
           ═══════════════════════════════════ */}
-      <section className="section-spacing">
+      <section className="section-spacing bg-gradient-to-b from-surface via-surface-blush/40 to-surface-blush dark:via-surface-container-low dark:to-surface-blush">
         <div className="page-container">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -179,16 +188,12 @@ export default function Home() {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="mb-16 md:mb-24"
           >
-            <div className="section-label">
-              <span className="section-label-line" />
-              <span className="section-label-text">Capabilities</span>
-            </div>
             <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-headline font-bold leading-tight">
               What I Bring
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 items-stretch">
             {pillars.map((pillar, i) => (
               <motion.div
                 key={pillar.title}
@@ -196,15 +201,19 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="bg-surface-blush p-10 lg:p-12 rounded-2xl border border-border hover:border-primary/20 hover:shadow-card transition-all duration-500 group"
+                className="h-full min-h-[15rem] group"
               >
-                <div className="w-16 h-16 rounded-xl bg-primary/8 text-primary flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                  {pillar.icon}
+                <div className="pillar-glow-border h-full rounded-2xl transition-[transform] duration-500 group-hover:-translate-y-0.5">
+                  <div className="pillar-glow-border__inner flex flex-col p-10 lg:p-12">
+                    <div className="w-16 h-16 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-8 ring-1 ring-primary/15 group-hover:bg-primary group-hover:text-white group-hover:ring-primary/40 transition-all duration-500">
+                      {pillar.icon}
+                    </div>
+                    <h4 className="font-bold text-xl mb-3 leading-snug">{pillar.title}</h4>
+                    <p className="text-on-surface-variant text-base font-medium leading-relaxed">
+                      {pillar.description}
+                    </p>
+                  </div>
                 </div>
-                <h4 className="font-bold text-xl mb-3 leading-snug">{pillar.title}</h4>
-                <p className="text-on-surface-variant text-base font-medium leading-relaxed">
-                  {pillar.description}
-                </p>
               </motion.div>
             ))}
           </div>
@@ -223,10 +232,6 @@ export default function Home() {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="mb-16 md:mb-24"
           >
-            <div className="section-label">
-              <span className="w-10 h-px bg-primary" />
-              <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs">The Framework</span>
-            </div>
             <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-headline font-bold text-white leading-tight">
               How I Help Businesses Grow
             </h2>
@@ -297,14 +302,14 @@ export default function Home() {
       {/* ═══════════════════════════════════
           7. CTA
           ═══════════════════════════════════ */}
-      <section className="section-spacing px-6">
+      <section className="bg-surface-inverted section-spacing px-6">
         <div className="max-w-3xl mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold mb-10 leading-[1.12]"
+            className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold mb-10 leading-[1.12] text-white"
           >
             Let's build something that moves your business forward.
           </motion.h2>

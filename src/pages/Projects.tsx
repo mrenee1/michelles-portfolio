@@ -16,17 +16,8 @@ const brandProject = {
 
 const projects = [
   {
-    title: "Creative Solutions Partners",
-    tag: "Platform",
-    description:
-      "At Creative Solutions Partners, I operate as a Strategic Partner and Digital Growth Director, leading initiatives across brand strategy, web development, marketing, content systems, automation, and AI-driven infrastructure to build scalable ecosystems that produce real business results.",
-    url: "https://www.creativesolutionspartners.com/",
-    color: "#008080",
-    featured: true,
-  },
-  {
-    title: "Partner Workspace",
-    tag: "Client + Partner Platform",
+    title: "Client Portal",
+    tag: "Client portal",
     badge: "System Build",
     description:
       "A structured digital workspace designed to centralize client and partner operations, including project tracking, file management, communication, and resource access, within a clean, scalable interface. This platform shows how organized systems and intuitive interfaces reduce friction, improve visibility, and support more efficient collaboration across teams.",
@@ -46,13 +37,22 @@ const projects = [
     featured: true,
   },
   {
+    title: "Creative Solutions Partners",
+    tag: "Platform",
+    description:
+      "Architected and built a scalable digital platform for a multi-vertical business spanning health, wealth, and technology.\n\nThis wasn't a typical website build—it was a strategic system designed to drive revenue, support partner distribution, and position the brand as a premium, trusted solution provider.\n\nFrom information architecture to automation, every layer was built to convert complexity into clarity and growth.",
+    url: "https://www.creativesolutionspartners.com/",
+    color: "#008080",
+    featured: true,
+  },
+  {
     title: "Prospect Lens",
     tag: "AI Tool",
     description:
       "An AI-driven lead intelligence tool that helps sales teams identify and prioritize high-value opportunities in real time.",
-    url: "https://prospectlens-8bzbueep.manus.space/",
+    url: "https://prospect-lens-app-598433121830.us-west1.run.app",
     color: "#006868",
-    featured: false,
+    featured: true,
   },
   {
     title: "Creative Solutions Insights",
@@ -69,9 +69,11 @@ const projects = [
     tag: "Vertical SaaS",
     badge: "Industry Platform",
     elevated: true,
+    comingSoon: true,
     description:
       "A specialized booking and operations platform designed for hunting and fishing outfitters that combines reservations, client management, and experience coordination into one streamlined system. It shows how industry-specific software can simplify operations, improve customer experience, and create scalable infrastructure for niche businesses.",
-    url: "https://bucknducks-j2fbqrr6.manus.space",
+    url: "#",
+    preview: "/bucknducks-outfitter-os-preview.png",
     color: "#2d3b2d",
     featured: false,
   },
@@ -125,21 +127,29 @@ function ProjectCard({ project, index, large = false }: ProjectCardProps) {
           <div className="browser-dot bg-[#FFBD2E]" />
           <div className="browser-dot bg-[#28C840]" />
         </div>
-        <div className="flex-1 mx-3 bg-[#3a3a3a]/30 rounded-md px-3 py-1">
+        <div className="flex-1 mx-3 bg-chrome-address/25 rounded-md px-3 py-1">
           <span className="text-[10px] text-on-surface-variant/50 font-medium truncate">
-            {project.title}
+            {"comingSoon" in project && project.comingSoon && project.subtitle
+              ? `${project.subtitle} · Outfitter OS`
+              : project.title}
           </span>
         </div>
       </div>
       <div className={`overflow-hidden relative ${aspect}`}>
         <img
           src={project.preview}
-          alt={`${project.title} dashboard preview`}
+          alt={`${project.title} preview`}
           className="absolute inset-0 w-full h-full object-cover object-top"
         />
-        <span className="absolute bottom-3 right-3 z-[3] bg-black/40 backdrop-blur-sm text-white/80 text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-md pointer-events-none">
-          Dashboard View
-        </span>
+        {"comingSoon" in project && project.comingSoon ? (
+          <span className="absolute top-3 right-3 z-[3] bg-primary text-white text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-md pointer-events-none shadow-lg">
+            Coming soon
+          </span>
+        ) : (
+          <span className="absolute bottom-3 right-3 z-[3] bg-surface-inverted/55 backdrop-blur-sm text-white/85 text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-md pointer-events-none">
+            Dashboard View
+          </span>
+        )}
       </div>
     </div>
   ) : hasLiveUrl ? (
@@ -167,6 +177,52 @@ function ProjectCard({ project, index, large = false }: ProjectCardProps) {
       transition={{ duration: 0.7, delay: index * 0.08 }}
       className={`group ${isElevated ? "md:col-span-2" : ""}`}
     >
+      <div className="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8">
+        <div className="min-w-0 flex-1 max-w-2xl">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="text-primary font-bold uppercase tracking-[0.2em] text-[11px]">
+              {project.tag}
+            </span>
+            {project.badge && (
+              <span className="bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                {project.badge}
+              </span>
+            )}
+          </div>
+          <h3
+            className={`font-headline font-bold ${
+              large ? "text-3xl md:text-4xl" : "text-2xl"
+            } ${project.subtitle ? "mb-1" : "mb-2.5"}`}
+          >
+            {project.title}
+          </h3>
+          {project.subtitle && (
+            <p className="text-on-surface-variant/70 text-sm font-semibold mb-2.5">{project.subtitle}</p>
+          )}
+          <div className="space-y-3 text-on-surface-variant font-medium leading-relaxed text-[0.938rem]">
+            {project.description.split(/\n\n+/).map((paragraph, i) => (
+              <p key={i}>{paragraph.trim()}</p>
+            ))}
+          </div>
+        </div>
+        <div className="shrink-0">
+          {hasLiveUrl ? (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 bg-surface-inverted text-white px-6 py-3 rounded-full text-sm font-bold hover:shadow-premium transition-all duration-300 hover:[background:linear-gradient(135deg,#ff007a_0%,#d6006e_50%,#c2185b_100%)]"
+            >
+              View Live Site <ExternalLink className="w-4 h-4" />
+            </a>
+          ) : (
+            <span className="inline-flex items-center gap-2 text-on-surface-variant/50 text-sm font-bold">
+              Coming Soon
+            </span>
+          )}
+        </div>
+      </div>
+
       {useTilt ? (
         <TiltCard
           borderRadius={16}
@@ -180,46 +236,6 @@ function ProjectCard({ project, index, large = false }: ProjectCardProps) {
           {previewContent}
         </div>
       )}
-
-      <div className="mt-8 md:mt-10">
-        <div className="flex items-center gap-3 mb-3">
-          <span className="text-primary font-bold uppercase tracking-[0.2em] text-[11px]">
-            {project.tag}
-          </span>
-          {project.badge && (
-            <span className="bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
-              {project.badge}
-            </span>
-          )}
-        </div>
-        <h3
-          className={`font-headline font-bold ${
-            large ? "text-3xl md:text-4xl" : "text-2xl"
-          } ${project.subtitle ? "mb-1" : "mb-2.5"}`}
-        >
-          {project.title}
-        </h3>
-        {project.subtitle && (
-          <p className="text-on-surface-variant/70 text-sm font-semibold mb-2.5">{project.subtitle}</p>
-        )}
-        <p className="text-on-surface-variant font-medium leading-relaxed mb-5 text-[0.938rem]">
-          {project.description}
-        </p>
-        {hasLiveUrl ? (
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 bg-surface-inverted text-white px-6 py-3 rounded-full text-sm font-bold hover:shadow-premium transition-all duration-300 hover:[background:linear-gradient(135deg,#ff007a_0%,#d6006e_50%,#c2185b_100%)]"
-          >
-            View Live Site <ExternalLink className="w-4 h-4" />
-          </a>
-        ) : (
-          <span className="inline-flex items-center gap-2 text-on-surface-variant/50 text-sm font-bold">
-            Coming Soon
-          </span>
-        )}
-      </div>
     </motion.div>
   );
 }
@@ -235,16 +251,6 @@ export default function Projects() {
       {/* ── Header ── */}
       <section className="page-container mb-20 md:mb-28">
         <div>
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="section-label">
-              <span className="section-label-line" />
-              <span className="section-label-text">Live Work</span>
-            </div>
-          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -268,7 +274,7 @@ export default function Projects() {
       {/* ══════════════════════════════════════════
           THE BRAND: Biz Boost Agency
           ══════════════════════════════════════════ */}
-      <section className="bg-[#0a0a0a] py-28 md:py-36 lg:py-40">
+      <section className="bg-surface-inverted py-28 md:py-36 lg:py-40">
         <div className="page-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -276,21 +282,8 @@ export default function Projects() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.9 }}
           >
-            <div className="section-label mb-10">
-              <span className="w-10 h-px bg-primary" />
-              <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs">Founder Brand</span>
-            </div>
-
-            <TiltCard
-              borderRadius={12}
-              glowColor="rgba(255, 0, 122, 0.4)"
-              glowSize="45%"
-            >
-              <BrowserFrame src={brandProject.url} title={brandProject.title} />
-            </TiltCard>
-
-            <div className="mt-10 md:mt-14 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-              <div className="max-w-2xl">
+            <div className="mb-10 md:mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+              <div className="max-w-2xl min-w-0 flex-1">
                 <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs mb-3 block">
                   {brandProject.tag}
                 </span>
@@ -310,6 +303,14 @@ export default function Projects() {
                 View Live Site <ExternalLink className="w-4 h-4" />
               </a>
             </div>
+
+            <TiltCard
+              borderRadius={12}
+              glowColor="rgba(255, 0, 122, 0.4)"
+              glowSize="45%"
+            >
+              <BrowserFrame src={brandProject.url} title={brandProject.title} />
+            </TiltCard>
           </motion.div>
         </div>
       </section>
@@ -326,10 +327,6 @@ export default function Projects() {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="mb-16 md:mb-24"
           >
-            <div className="section-label">
-              <span className="section-label-line" />
-              <span className="section-label-text">Selected Platforms &amp; Systems</span>
-            </div>
             <h2 className="text-3xl md:text-4xl font-headline font-bold">
               Platforms &amp; Products
             </h2>

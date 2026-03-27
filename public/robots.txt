@@ -1,0 +1,5 @@
+# https://mreneewilliams.com
+User-agent: *
+Allow: /
+
+Sitemap: https://mreneewilliams.com/sitemap.xml

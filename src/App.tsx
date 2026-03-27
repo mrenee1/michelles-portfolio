@@ -2,13 +2,13 @@ import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "r
 import { AnimatePresence, motion } from "motion/react";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { PageEnterLoader } from "./components/PageEnterLoader";
 import Home from "./pages/Home";
 import Experience from "./pages/Experience";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import { useEffect } from "react";
 import { ThemeProvider } from "./lib/utils";
-import { PortfolioChatWidget } from "./components/PortfolioChatWidget";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -47,14 +47,14 @@ export default function App() {
     <ThemeProvider>
       <Router>
         <ScrollToTop />
+        <PageEnterLoader />
         <div className="min-h-screen flex flex-col">
           <Navbar />
-          <main className="flex-grow">
+          <main id="main-content" className="flex-grow">
             <AnimatedRoutes />
           </main>
           <Footer />
         </div>
-        <PortfolioChatWidget />
       </Router>
     </ThemeProvider>
   );
