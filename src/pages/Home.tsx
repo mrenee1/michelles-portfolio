@@ -2,7 +2,6 @@ import { motion } from "motion/react";
 import { ArrowRight, Target, Code2, Cpu, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePageMeta } from "@/src/lib/utils";
-import TiltCard from "@/src/components/TiltCard";
 
 const pillars = [
   {
@@ -35,7 +34,7 @@ const growthSteps = [
 ];
 
 export default function Home() {
-  usePageMeta(undefined, "Michelle Williams: digital strategist, systems builder, and founder. 18+ years turning strategy, web development, automation, and AI into measurable business results.");
+  usePageMeta(undefined, "I'm Michelle Williams, a digital strategist, systems builder, and founder. 16+ years turning strategy, web development, automation, and AI into measurable business results.");
 
   return (
     <div className="pt-36 md:pt-44">
@@ -84,7 +83,7 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg md:text-xl text-on-surface-variant font-medium leading-relaxed mb-14 max-w-2xl"
           >
-            18+ years of sales leadership combined with a deep obsession for scalable technology, AI, and automation, turned into systems that produce measurable results.
+            I've spent 16+ years in sales leadership, paired with a deep obsession for scalable technology, AI, and automation, and I turn that into systems that produce measurable results.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -149,10 +148,10 @@ export default function Home() {
               </h2>
               <div className="space-y-6 text-lg text-on-surface-variant font-medium leading-[1.8]">
                 <p>
-                  Michelle's career started where business meets people: on the sales floor. After nearly two decades leading high-performing teams at Verizon, Best Buy, and Apple, then selling enterprise solutions at Comcast Business, she developed an uncommon skill set. She sees a business from the customer's first touch all the way through the systems that power it.
+                  My career started where business meets people: on the sales floor. In 16+ years I've led high-performing teams at Verizon, Best Buy, and Apple, and I've sold enterprise solutions at Comcast Business. That path gave me an uncommon skill set: I see a business from the customer's first touch all the way through the systems that power it.
                 </p>
                 <p>
-                  Today, she operates at the intersection of strategy, technology, and execution, serving as a Strategic Partner at Creative Solutions Partners while building her own agency, Biz Boost, from the ground up. Every system she architects is designed to do one thing: generate real, measurable revenue.
+                  Today I work at the intersection of strategy, technology, and execution. I'm a Strategic Partner at Creative Solutions Partners, and I'm building my own agency, Biz Boost, from the ground up. Every system I architect is designed to do one thing: generate real, measurable revenue.
                 </p>
               </div>
               <div className="mt-8">
@@ -232,7 +231,7 @@ export default function Home() {
               How I Help Businesses Grow
             </h2>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+          <div className="grid grid-cols-1 items-stretch sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {growthSteps.map((step, i) => (
               <motion.div
                 key={step.title}
@@ -240,21 +239,22 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="h-full min-h-[17rem]"
               >
-                <TiltCard
-                  borderRadius={16}
-                  glowColor="rgba(255, 0, 122, 0.2)"
-                  glowSize="60%"
-                  shineEnabled={true}
-                >
-                  <div className="bg-white/[0.04] border border-white/[0.06] rounded-2xl p-8 lg:p-10 space-y-5 h-full">
-                    <div className="text-primary font-headline text-6xl font-black opacity-20 leading-none">
+                <div className="framework-glow-border h-full rounded-2xl">
+                  <div className="framework-glow-border__inner flex flex-col space-y-5 p-8 lg:p-10">
+                    <div
+                      className="font-headline text-6xl font-black leading-none text-primary"
+                      style={{
+                        textShadow: "0 0 28px rgba(255, 0, 122, 0.45)",
+                      }}
+                    >
                       0{i + 1}
                     </div>
-                    <h4 className="text-xl font-bold text-white">{step.title}</h4>
-                    <p className="text-white/50 text-base leading-relaxed">{step.desc}</p>
+                    <h4 className="shrink-0 text-xl font-bold text-white">{step.title}</h4>
+                    <p className="flex-1 text-base leading-relaxed text-white/55">{step.desc}</p>
                   </div>
-                </TiltCard>
+                </div>
               </motion.div>
             ))}
           </div>

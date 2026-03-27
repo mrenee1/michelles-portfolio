@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { usePageMeta } from "@/src/lib/utils";
 
 export default function Experience() {
-  usePageMeta("Experience", "18+ years of building, leading, and solving real problems: from consumer sales to enterprise strategy to digital systems that generate measurable revenue.");
+  usePageMeta("Experience", "I've spent 16+ years building, leading, and solving real problems: from consumer sales to enterprise strategy to digital systems that generate measurable revenue.");
 
   return (
     <div className="pt-36 md:pt-44 pb-0">
@@ -27,7 +27,7 @@ export default function Experience() {
             transition={{ duration: 0.4, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="text-[clamp(2.5rem,6vw,4.25rem)] font-headline font-extrabold leading-[1.1] tracking-tight text-on-surface mb-6 max-w-3xl"
           >
-            18+ years of building, leading, and{" "}
+            I've spent 16+ years building, leading, and{" "}
             <span className="text-primary">solving real problems.</span>
           </motion.h1>
           <motion.p
@@ -36,7 +36,7 @@ export default function Experience() {
             transition={{ duration: 0.35, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg md:text-xl text-on-surface-variant font-medium leading-relaxed max-w-2xl"
           >
-            From the frontline of consumer sales to enterprise strategy to building the digital systems behind modern, high-performing businesses.
+            I've gone from the frontline of consumer sales to enterprise strategy to building the digital systems behind modern, high-performing businesses.
           </motion.p>
         </div>
       </section>
@@ -55,19 +55,19 @@ export default function Experience() {
             >
               <div className="space-y-7 text-lg md:text-xl text-on-surface-variant font-medium leading-[1.8]">
                 <p>
-                  Michelle's career started where business meets people: on the sales floor. At Verizon, Best Buy, and Apple, she developed a deep understanding of customer psychology, sales execution, and how high-performing teams operate. Those years built the foundation: how to read a room, close a deal, and deliver consistent results.
+                  My career started where business meets people: on the sales floor. At Verizon, Best Buy, and Apple, I learned customer psychology, sales execution, and how high-performing teams operate. Those years built my foundation: how to read a room, close a deal, and deliver consistent results.
                 </p>
                 <p>
-                  She later moved into the enterprise space at Comcast Business, where she worked with mid-market and enterprise clients, translating complex technology into real business outcomes. That experience expanded her perspective from transactions to systems, and how the right infrastructure turns operations into revenue.
+                  I moved into the enterprise space at Comcast Business, working with mid-market and enterprise clients and translating complex technology into real business outcomes. That stretch widened my lens from transactions to systems, and how the right infrastructure turns operations into revenue.
                 </p>
                 <p>
-                  Today, Michelle operates at the intersection of strategy, technology, and execution.
+                  Today I operate at the intersection of strategy, technology, and execution.
                 </p>
                 <p>
-                  At Creative Solutions Partners, she serves as a strategic partner leading digital initiatives: building and optimizing brand strategy, web experiences, automation systems, and AI-driven infrastructure that support scalable, revenue-generating operations.
+                  At Creative Solutions Partners, I serve as a strategic partner leading digital initiatives: building and optimizing brand strategy, web experiences, automation systems, and AI-driven infrastructure that support scalable, revenue-generating operations.
                 </p>
                 <p>
-                  Separately, she is the founder of Biz Boost Agency, where she builds sites that convert and growth systems for businesses while also creating opportunities for other developers to contribute, collaborate, and grow under a strong brand and strategic direction.
+                  I'm also the founder of Biz Boost Agency, where I build sites that convert and growth systems for businesses, and I create opportunities for other developers to contribute, collaborate, and grow under a strong brand and strategic direction.
                 </p>
               </div>
 

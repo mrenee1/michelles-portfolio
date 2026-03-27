@@ -1,6 +1,6 @@
-# Michelle Williams — Portfolio
+# Michelle Williams: Portfolio
 
-Personal brand portfolio and project showcase for Michelle Williams.
+My personal brand portfolio and project showcase.
 
 **Strategy · Systems · Growth**
 

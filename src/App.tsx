@@ -8,6 +8,7 @@ import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import { useEffect } from "react";
 import { ThemeProvider } from "./lib/utils";
+import { PortfolioChatWidget } from "./components/PortfolioChatWidget";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -53,6 +54,7 @@ export default function App() {
           </main>
           <Footer />
         </div>
+        <PortfolioChatWidget />
       </Router>
     </ThemeProvider>
   );

@@ -7,9 +7,9 @@ import TiltCard from "@/src/components/TiltCard";
 
 const brandProject = {
   title: "Biz Boost Agency",
-  tag: "Agency Platform, Founded & Built by Michelle",
+  tag: "Agency Platform, Founded & Built by Me",
   description:
-    "The home base. Biz Boost Agency is where Michelle builds sites that convert and growth systems for businesses, while creating opportunities for developers to contribute, collaborate, and grow under a strong brand and strategic direction.",
+    "The home base. Biz Boost Agency is where I build sites that convert and growth systems for businesses, while creating opportunities for developers to contribute, collaborate, and grow under a strong brand and strategic direction.",
   url: "https://thebizboostagency.com/",
   color: "#ff007a",
 };
@@ -19,7 +19,7 @@ const projects = [
     title: "Creative Solutions Partners",
     tag: "Platform",
     description:
-      "At Creative Solutions Partners, she operates as a Strategic Partner and Digital Growth Director, leading initiatives across brand strategy, web development, marketing, content systems, automation, and AI-driven infrastructure to build scalable ecosystems that produce real business results.",
+      "At Creative Solutions Partners, I operate as a Strategic Partner and Digital Growth Director, leading initiatives across brand strategy, web development, marketing, content systems, automation, and AI-driven infrastructure to build scalable ecosystems that produce real business results.",
     url: "https://www.creativesolutionspartners.com/",
     color: "#008080",
     featured: true,
@@ -266,7 +266,7 @@ export default function Projects() {
       </section>
 
       {/* ══════════════════════════════════════════
-          THE BRAND — Biz Boost Agency
+          THE BRAND: Biz Boost Agency
           ══════════════════════════════════════════ */}
       <section className="bg-[#0a0a0a] py-28 md:py-36 lg:py-40">
         <div className="page-container">
