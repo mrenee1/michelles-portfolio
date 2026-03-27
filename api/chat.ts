@@ -58,7 +58,12 @@ function validateMessages(raw: unknown): IncomingMessage[] | null {
 function normalizeForModel(messages: IncomingMessage[]): { role: Role; content: string }[] {
   let start = 0;
   while (start < messages.length && messages[start].role === "assistant") start += 1;
-  return messages.slice(start).slice(-MAX_CONTEXT_MESSAGES);
+  const sliced = messages.slice(start).slice(-MAX_CONTEXT_MESSAGES);
+  // After taking the context window, the slice may now start with an assistant message.
+  // Strip any leading assistant messages so Anthropic always receives a user-first sequence.
+  let slicedStart = 0;
+  while (slicedStart < sliced.length && sliced[slicedStart].role === "assistant") slicedStart += 1;
+  return sliced.slice(slicedStart);
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
