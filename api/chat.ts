@@ -100,9 +100,9 @@ DO NOT:
 
 const ANTHROPIC_URL = "https://api.anthropic.com/v1/messages";
 const ANTHROPIC_VERSION = "2023-06-01";
-/** Dated snapshot IDs tend to work across more accounts than short aliases alone. */
-const DEFAULT_MODEL = "claude-sonnet-4-20250514";
-const FALLBACK_MODEL = "claude-3-5-sonnet-20241022";
+/** Start with a model most API keys can call; optional env overrides. */
+const DEFAULT_MODEL = "claude-3-5-sonnet-20241022";
+const FALLBACK_MODEL = "claude-sonnet-4-20250514";
 const MAX_CONTEXT_MESSAGES = 12;
 const MAX_MESSAGE_CHARS = 8000;
 const MAX_BODY_BYTES = 120_000;
@@ -163,13 +163,6 @@ function normalizeForModel(messages: IncomingMessage[]): { role: Role; content: 
   let slicedStart = 0;
   while (slicedStart < sliced.length && sliced[slicedStart].role === "assistant") slicedStart += 1;
   return sliced.slice(slicedStart);
-}
-
-function isLikelyModelNotAvailable(status: number, data: AnthropicMessageResponse) {
-  const msg = data.error?.message ?? "";
-  if (status === 404) return true;
-  if (status === 400 && /model|not_found|not found|invalid_model/i.test(msg)) return true;
-  return false;
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -249,15 +242,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     let attempt = await tryModel(primaryModel);
 
+    // Retry once with a widely available model unless the key is rejected (401).
     if (
       !attempt.ok &&
       !attempt.jsonError &&
-      isLikelyModelNotAvailable(attempt.status, attempt.data) &&
+      attempt.status !== 401 &&
       primaryModel !== FALLBACK_MODEL
     ) {
-      console.warn("[chat] Primary model failed, retrying fallback", {
+      console.warn("[chat] Primary model request failed, retrying fallback", {
         primaryModel,
         fallback: FALLBACK_MODEL,
+        status: attempt.status,
         message: attempt.data.error?.message,
       });
       attempt = await tryModel(FALLBACK_MODEL);
