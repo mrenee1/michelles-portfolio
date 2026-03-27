@@ -3,7 +3,7 @@ import { PORTFOLIO_ASSISTANT_SYSTEM_PROMPT } from "./systemPrompt";
 
 const ANTHROPIC_URL = "https://api.anthropic.com/v1/messages";
 const ANTHROPIC_VERSION = "2023-06-01";
-const MODEL = process.env.ANTHROPIC_MODEL ?? "claude-opus-4-6";
+const MODEL = process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-6";
 const MAX_CONTEXT_MESSAGES = 12;
 const MAX_MESSAGE_CHARS = 8000;
 const MAX_BODY_BYTES = 120_000;
