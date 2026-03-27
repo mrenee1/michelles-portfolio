@@ -244,9 +244,9 @@ export default function Home() {
                 <div className="framework-glow-border h-full rounded-2xl">
                   <div className="framework-glow-border__inner flex flex-col space-y-5 p-8 lg:p-10">
                     <div
-                      className="font-headline text-6xl font-black leading-none text-primary"
+                      className="font-headline text-6xl font-black leading-none text-white"
                       style={{
-                        textShadow: "0 0 28px rgba(255, 0, 122, 0.45)",
+                        textShadow: "0 1px 3px rgba(0, 0, 0, 0.35)",
                       }}
                     >
                       0{i + 1}
