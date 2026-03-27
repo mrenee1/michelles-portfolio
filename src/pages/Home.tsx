@@ -302,8 +302,8 @@ export default function Home() {
       {/* ═══════════════════════════════════
           7. CTA
           ═══════════════════════════════════ */}
-      <section className="bg-surface-inverted section-spacing px-6">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="bg-surface-inverted section-spacing">
+        <div className="page-container max-w-3xl mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}

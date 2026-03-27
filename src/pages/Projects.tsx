@@ -274,7 +274,7 @@ export default function Projects() {
       {/* ══════════════════════════════════════════
           THE BRAND: Biz Boost Agency
           ══════════════════════════════════════════ */}
-      <section className="bg-surface-inverted py-28 md:py-36 lg:py-40">
+      <section className="bg-surface-inverted section-spacing">
         <div className="page-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -375,8 +375,8 @@ export default function Projects() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="section-spacing px-6">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="section-spacing">
+        <div className="page-container max-w-3xl mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}

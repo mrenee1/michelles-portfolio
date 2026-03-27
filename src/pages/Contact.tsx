@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "motion/react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MessageCircle, Send } from "lucide-react";
 import QRCode from "react-qr-code";
 import { usePageMeta } from "@/src/lib/utils";
 
@@ -127,7 +127,7 @@ export default function Contact() {
       </section>
 
       {/* ── Content ── */}
-      <section className="bg-surface-blush section-spacing">
+      <section className="bg-surface-inverted section-spacing text-white">
         <div className="page-container">
           <div className="grid grid-cols-12 gap-8 lg:gap-20">
             {/* Contact Info */}
@@ -144,10 +144,10 @@ export default function Contact() {
                     <Mail size={22} />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant">Email</h3>
+                    <h3 className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-white/70">Email</h3>
                     <a
                       href={MAILTO_BASE}
-                      className="text-lg font-bold text-on-surface break-all underline decoration-primary/30 underline-offset-2 transition-colors hover:text-primary hover:decoration-primary"
+                      className="text-lg font-bold text-white break-all underline decoration-primary/40 underline-offset-2 transition-colors hover:text-primary hover:decoration-primary"
                     >
                       {CONTACT_EMAIL}
                     </a>
@@ -155,15 +155,15 @@ export default function Contact() {
                 </div>
                 {[
                   { icon: <Phone size={22} />, label: "Phone", value: "501-913-5473" },
-                  { icon: <MapPin size={22} />, label: "Location", value: "Remote / Global" },
+                  { icon: <MessageCircle size={22} />, label: "Quick Note", value: "Email or text anytime. Free consults, always." },
                 ].map((item) => (
                   <div key={item.label} className="flex items-start gap-5">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/8 text-primary">
                       {item.icon}
                     </div>
                     <div>
-                      <h3 className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant">{item.label}</h3>
-                      <p className="text-lg font-bold text-on-surface">{item.value}</p>
+                      <h3 className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-white/70">{item.label}</h3>
+                      <p className="text-lg font-bold text-white">{item.value}</p>
                     </div>
                   </div>
                 ))}

@@ -42,7 +42,7 @@ export default function Experience() {
       </section>
 
       {/* ── Narrative + Photo ── */}
-      <section className="bg-surface-blush section-spacing">
+      <section className="bg-surface-inverted section-spacing text-white">
         <div className="page-container">
           <div className="editorial-grid items-center">
             {/* Narrative */}
@@ -53,7 +53,7 @@ export default function Experience() {
               transition={{ duration: 0.8 }}
               className="col-span-12 lg:col-span-7 order-2 lg:order-1"
             >
-              <div className="space-y-7 text-lg md:text-xl text-on-surface-variant font-medium leading-[1.8]">
+              <div className="space-y-7 text-lg md:text-xl text-white/90 font-medium leading-[1.8]">
                 <p>
                   My career started where business meets people: on the sales floor. At Verizon, Best Buy, and Apple, I learned customer psychology, sales execution, and how high-performing teams operate. Those years built my foundation: how to read a room, close a deal, and deliver consistent results.
                 </p>
@@ -76,16 +76,16 @@ export default function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="mt-12 bg-surface-card p-8 md:p-10 rounded-2xl border-l-[6px] border-primary shadow-ambient"
+                className="mt-12 bg-white/10 p-8 md:p-10 rounded-2xl border-l-[6px] border-white/70 shadow-ambient"
               >
-                <p className="italic text-on-surface font-bold leading-relaxed text-xl md:text-2xl">
+                <p className="italic text-white font-bold leading-relaxed text-xl md:text-2xl">
                   "Real systems produce real business results."
                 </p>
               </motion.div>
 
               <div className="mt-8 flex flex-wrap gap-3">
                 {["Strategic Partner", "Founder", "Digital Operator", "Systems Architect", "Growth Strategist"].map((badge) => (
-                  <span key={badge} className="strategy-pill">{badge}</span>
+                  <span key={badge} className="strategy-pill !text-white !border-white/40 !bg-white/10">{badge}</span>
                 ))}
               </div>
             </motion.div>
@@ -96,7 +96,7 @@ export default function Experience() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="col-span-12 lg:col-span-5 order-1 lg:order-2 flex justify-center"
+              className="col-span-12 lg:col-span-5 order-1 lg:order-2 flex justify-center lg:-mt-10"
             >
               <div className="relative max-w-sm lg:max-w-none w-full">
                 <div className="absolute -inset-12 bg-primary/8 rounded-full blur-[100px] pointer-events-none" />
@@ -147,10 +147,14 @@ export default function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.06 }}
-                className="bg-surface-blush p-8 rounded-2xl border border-border hover:border-primary/15 transition-all duration-400"
+                className="h-full min-h-[14rem] group"
               >
-                <h4 className="font-bold text-base mb-3 text-on-surface">{strength.label}</h4>
-                <p className="text-on-surface-variant text-sm font-medium leading-relaxed">{strength.items}</p>
+                <div className="pillar-glow-border h-full rounded-2xl transition-[transform] duration-500 group-hover:-translate-y-0.5">
+                  <div className="pillar-glow-border__inner flex h-full flex-col p-8 md:p-9">
+                    <h4 className="font-bold text-lg mb-3 text-on-surface leading-snug">{strength.label}</h4>
+                    <p className="text-on-surface-variant text-base font-medium leading-relaxed">{strength.items}</p>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
