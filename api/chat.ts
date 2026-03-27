@@ -100,7 +100,9 @@ DO NOT:
 
 const ANTHROPIC_URL = "https://api.anthropic.com/v1/messages";
 const ANTHROPIC_VERSION = "2023-06-01";
-const MODEL = process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-6";
+/** Dated snapshot IDs tend to work across more accounts than short aliases alone. */
+const DEFAULT_MODEL = "claude-sonnet-4-20250514";
+const FALLBACK_MODEL = "claude-3-5-sonnet-20241022";
 const MAX_CONTEXT_MESSAGES = 12;
 const MAX_MESSAGE_CHARS = 8000;
 const MAX_BODY_BYTES = 120_000;
@@ -163,6 +165,13 @@ function normalizeForModel(messages: IncomingMessage[]): { role: Role; content: 
   return sliced.slice(slicedStart);
 }
 
+function isLikelyModelNotAvailable(status: number, data: AnthropicMessageResponse) {
+  const msg = data.error?.message ?? "";
+  if (status === 404) return true;
+  if (status === 400 && /model|not_found|not found|invalid_model/i.test(msg)) return true;
+  return false;
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -196,36 +205,83 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(413).json({ error: "Request too large." });
   }
 
+  const primaryModel = (process.env.ANTHROPIC_MODEL ?? DEFAULT_MODEL).trim() || DEFAULT_MODEL;
+  const requestBodyBase = {
+    max_tokens: 2048,
+    system: PORTFOLIO_ASSISTANT_SYSTEM_PROMPT,
+    messages: forModel,
+  };
+
   try {
-    const anthropicRes = await fetch(ANTHROPIC_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": ANTHROPIC_VERSION,
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: 2048,
-        system: PORTFOLIO_ASSISTANT_SYSTEM_PROMPT,
-        messages: forModel,
-      }),
-    });
-
-    const data = (await anthropicRes.json()) as AnthropicMessageResponse;
-
-    if (!anthropicRes.ok) {
-      const errType = data.error?.type ?? "unknown";
-      const errMsg = data.error?.message ?? anthropicRes.statusText;
-      console.error("[chat] Anthropic API error", {
-        status: anthropicRes.status,
-        type: errType,
-        message: errMsg,
+    const tryModel = async (model: string) => {
+      const anthropicRes = await fetch(ANTHROPIC_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": apiKey,
+          "anthropic-version": ANTHROPIC_VERSION,
+        },
+        body: JSON.stringify({ ...requestBodyBase, model }),
       });
+      const rawText = await anthropicRes.text();
+      let data: AnthropicMessageResponse = {};
+      try {
+        data = rawText ? (JSON.parse(rawText) as AnthropicMessageResponse) : {};
+      } catch {
+        console.error("[chat] Anthropic non-JSON body", {
+          status: anthropicRes.status,
+          snippet: rawText.slice(0, 400),
+        });
+        return {
+          ok: false as const,
+          status: anthropicRes.status,
+          data: {} as AnthropicMessageResponse,
+          jsonError: true as const,
+        };
+      }
+      return {
+        ok: anthropicRes.ok,
+        status: anthropicRes.status,
+        data,
+        jsonError: false as const,
+      };
+    };
+
+    let attempt = await tryModel(primaryModel);
+
+    if (
+      !attempt.ok &&
+      !attempt.jsonError &&
+      isLikelyModelNotAvailable(attempt.status, attempt.data) &&
+      primaryModel !== FALLBACK_MODEL
+    ) {
+      console.warn("[chat] Primary model failed, retrying fallback", {
+        primaryModel,
+        fallback: FALLBACK_MODEL,
+        message: attempt.data.error?.message,
+      });
+      attempt = await tryModel(FALLBACK_MODEL);
+    }
+
+    if (attempt.jsonError) {
       return res.status(502).json({ error: "The assistant could not complete that request." });
     }
 
-    const text = (data.content ?? [])
+    if (!attempt.ok) {
+      const errType = attempt.data.error?.type ?? "unknown";
+      const errMsg = attempt.data.error?.message ?? "unknown";
+      console.error("[chat] Anthropic API error", {
+        status: attempt.status,
+        type: errType,
+        message: errMsg,
+      });
+      if (attempt.status === 401) {
+        return res.status(502).json({ error: "Chat configuration error. Please try again later." });
+      }
+      return res.status(502).json({ error: "The assistant could not complete that request." });
+    }
+
+    const text = (attempt.data.content ?? [])
       .filter((b) => b.type === "text" && typeof b.text === "string")
       .map((b) => b.text as string)
       .join("")
