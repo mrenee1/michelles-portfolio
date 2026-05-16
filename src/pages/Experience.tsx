@@ -25,7 +25,7 @@ export default function Experience() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[clamp(2.5rem,6vw,4.25rem)] font-headline font-extrabold leading-[1.1] tracking-tight text-on-surface mb-6 max-w-3xl"
+            className="text-[clamp(2.5rem,6vw,4.25rem)] font-headline font-extrabold leading-[1.12] tracking-tight text-on-surface mb-6 max-w-3xl text-balance break-words"
           >
             I've spent 16+ years building, leading, and{" "}
             <span className="text-primary">solving real problems.</span>
@@ -147,11 +147,11 @@ export default function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.06 }}
-                className="h-full min-h-[14rem] group"
+                className="flex min-h-[14rem] flex-col group"
               >
-                <div className="pillar-glow-border h-full rounded-2xl transition-[transform] duration-500 group-hover:-translate-y-0.5">
-                  <div className="pillar-glow-border__inner flex h-full flex-col p-8 md:p-9">
-                    <h4 className="font-bold text-lg mb-3 text-on-surface leading-snug">{strength.label}</h4>
+                <div className="pillar-glow-border h-full flex-1 rounded-2xl transition-[transform] duration-500 group-hover:-translate-y-0.5">
+                  <div className="pillar-glow-border__inner flex flex-col p-8 md:p-9">
+                    <h4 className="font-bold text-lg mb-3 text-on-surface leading-snug break-words">{strength.label}</h4>
                     <p className="text-on-surface-variant text-base font-medium leading-relaxed">{strength.items}</p>
                   </div>
                 </div>
@@ -169,7 +169,7 @@ export default function Experience() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="text-3xl md:text-5xl font-headline font-bold text-white mb-8 leading-tight max-w-3xl mx-auto"
+            className="text-3xl md:text-5xl font-headline font-bold text-white mb-8 leading-snug text-balance max-w-3xl mx-auto"
           >
             Ready to work with someone who understands both sides of the table?
           </motion.h2>

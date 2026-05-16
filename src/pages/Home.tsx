@@ -44,7 +44,7 @@ export default function Home() {
           ═══════════════════════════════════ */}
       <section className="page-container mb-0 pb-28 md:pb-36">
         <div className="max-w-[52rem]">
-          <h1 className="text-[clamp(2.75rem,7.5vw,5rem)] font-headline font-extrabold leading-[1.08] tracking-tight text-on-surface mb-8">
+          <h1 className="text-[clamp(2.75rem,7.5vw,5rem)] font-headline font-extrabold leading-[1.12] tracking-tight text-on-surface mb-8 text-balance break-words">
             {["I", "design", "and", "build", "digital", "systems", "that", "drive"].map((word, i) => (
               <motion.span
                 key={i}
@@ -101,7 +101,7 @@ export default function Home() {
       {/* ═══════════════════════════════════
           2. WHO I AM
           ═══════════════════════════════════ */}
-      <section className="relative overflow-hidden border border-surface-inverted/14 bg-surface-inverted section-spacing dark:border-surface-inverted/30">
+      <section className="relative overflow-x-clip border border-surface-inverted/14 bg-surface-inverted section-spacing dark:border-surface-inverted/30">
         <div
           className="pointer-events-none absolute inset-0 z-0 opacity-[0.48] dark:opacity-[0.4]"
           aria-hidden
@@ -152,7 +152,7 @@ export default function Home() {
               <div className="section-label mb-8">
                 <span className="section-label-text">Who I Am</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-headline font-bold leading-tight mb-8 text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-headline font-bold leading-snug text-balance mb-8 text-white">
                 Operator. Builder. Strategist.
               </h2>
               <div className="space-y-6 text-lg font-medium leading-[1.8] text-white/88">
@@ -188,7 +188,7 @@ export default function Home() {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="mb-16 md:mb-24"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-headline font-bold leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-headline font-bold leading-snug text-balance">
               What I Bring
             </h2>
           </motion.div>
@@ -201,19 +201,19 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="h-full min-h-[15rem] group"
+                className="flex min-h-[15rem] flex-col group"
               >
-                <div className="pillar-glow-border h-full rounded-2xl transition-[transform] duration-500 group-hover:-translate-y-0.5">
-                  <div className="pillar-glow-border__inner flex flex-col p-10 lg:p-12">
+                <motion.div className="pillar-glow-border h-full flex-1 rounded-2xl transition-[transform] duration-500 group-hover:-translate-y-0.5">
+                  <div className="pillar-glow-border__inner flex flex-col p-8 sm:p-10 lg:p-12">
                     <div className="w-16 h-16 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-8 ring-1 ring-primary/15 group-hover:bg-primary group-hover:text-white group-hover:ring-primary/40 transition-all duration-500">
                       {pillar.icon}
                     </div>
-                    <h4 className="font-bold text-xl mb-3 leading-snug">{pillar.title}</h4>
+                    <h4 className="font-bold text-xl mb-3 leading-snug break-words">{pillar.title}</h4>
                     <p className="text-on-surface-variant text-base font-medium leading-relaxed">
                       {pillar.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
@@ -232,7 +232,7 @@ export default function Home() {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="mb-16 md:mb-24"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-headline font-bold text-white leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-headline font-bold text-white leading-snug text-balance">
               How I Help Businesses Grow
             </h2>
           </motion.div>
@@ -244,19 +244,19 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="h-full min-h-[17rem]"
+                className="flex min-h-[17rem] flex-col"
               >
-                <div className="framework-glow-border h-full rounded-2xl">
+                <div className="framework-glow-border h-full flex-1 rounded-2xl">
                   <div className="framework-glow-border__inner flex flex-col space-y-5 p-8 lg:p-10">
                     <div
-                      className="font-headline text-6xl font-black leading-none text-white"
+                      className="font-headline text-6xl font-black leading-tight text-white"
                       style={{
                         textShadow: "0 1px 3px rgba(0, 0, 0, 0.35)",
                       }}
                     >
                       0{i + 1}
                     </div>
-                    <h4 className="shrink-0 text-xl font-bold text-white">{step.title}</h4>
+                    <h4 className="shrink-0 text-xl font-bold text-white break-words">{step.title}</h4>
                     <p className="flex-1 text-base leading-relaxed text-white/55">{step.desc}</p>
                   </div>
                 </div>
@@ -283,7 +283,7 @@ export default function Home() {
               <span className="section-label-text">Live Work</span>
               <span className="section-label-line" />
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-headline font-bold leading-tight mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-headline font-bold leading-snug text-balance mb-6">
               Real systems. Real results.
             </h2>
             <p className="text-xl text-on-surface-variant font-medium leading-relaxed mb-12 max-w-2xl mx-auto">
@@ -309,7 +309,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold mb-10 leading-[1.12] text-white"
+            className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold mb-10 leading-[1.15] text-white text-balance"
           >
             Let's build something that moves your business forward.
           </motion.h2>

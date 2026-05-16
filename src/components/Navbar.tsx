@@ -30,7 +30,7 @@ export function Navbar() {
             width={40}
             height={40}
           />
-          <span className="text-xl font-bold tracking-tight text-primary font-headline truncate">
+          <span className="text-base sm:text-xl font-bold tracking-tight text-primary font-headline leading-tight break-words">
             Michelle Williams
           </span>
         </Link>

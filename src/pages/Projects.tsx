@@ -2,8 +2,7 @@ import { motion } from "motion/react";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePageMeta } from "@/src/lib/utils";
-import BrowserFrame from "@/src/components/BrowserFrame";
-import TiltCard from "@/src/components/TiltCard";
+import BrowserFrame, { PROJECT_FRAME_VIEWPORT_CLASS } from "@/src/components/BrowserFrame";
 
 const brandProject = {
   title: "Biz Boost Agency",
@@ -53,6 +52,16 @@ const projects = [
     url: "https://prospect-lens-app-598433121830.us-west1.run.app",
     color: "#006868",
     featured: true,
+  },
+  {
+    title: "Diamond Home Services",
+    tag: "Local Business",
+    badge: "Client Website",
+    description:
+      "A conversion-focused website for a local lawncare and home cleaning business, built to showcase services, establish trust, and make it easy for customers to learn what’s offered and get in touch.",
+    url: "https://diamondhomeservices.vercel.app",
+    color: "#1e6b4f",
+    featured: false,
   },
   {
     title: "Creative Solutions Insights",
@@ -105,37 +114,26 @@ function BrandedFallback({ title, color }: { title: string; color: string }) {
 function ProjectCard({ project, index, large = false }: ProjectCardProps) {
   const hasLiveUrl = project.url !== "#";
   const isElevated = project.elevated;
-  const useTilt = large || isElevated;
-
-  const aspect = large
-    ? "aspect-[16/8] md:aspect-[16/7]"
-    : isElevated
-      ? "aspect-[16/9]"
-      : "aspect-[16/10]";
-
-  const glowColor = project.color === "#008080"
-    ? "rgba(0, 128, 128, 0.3)"
-    : project.color === "#0d0d1a"
-      ? "rgba(100, 100, 255, 0.25)"
-      : `${project.color}55`;
+  const chromeLabel =
+    "comingSoon" in project && project.comingSoon && project.subtitle
+      ? `${project.subtitle} · Outfitter OS`
+      : project.title;
 
   const previewContent = project.preview ? (
-    <div className="browser-frame">
-      <div className={`browser-header ${isElevated ? "h-11" : ""}`}>
+    <div className="browser-frame w-full">
+      <div className="browser-header flex h-10 shrink-0 items-center gap-2 px-4">
         <div className="flex gap-2">
           <div className="browser-dot bg-[#FF5F57]" />
           <div className="browser-dot bg-[#FFBD2E]" />
           <div className="browser-dot bg-[#28C840]" />
         </div>
-        <div className="flex-1 mx-3 bg-chrome-address/25 rounded-md px-3 py-1">
-          <span className="text-[10px] text-on-surface-variant/50 font-medium truncate">
-            {"comingSoon" in project && project.comingSoon && project.subtitle
-              ? `${project.subtitle} · Outfitter OS`
-              : project.title}
+        <div className="flex-1 min-w-0 mx-3 bg-chrome-address/25 rounded-md px-3 py-1">
+          <span className="text-[10px] text-on-surface-variant/50 font-medium truncate block" title={chromeLabel}>
+            {chromeLabel}
           </span>
         </div>
       </div>
-      <div className={`overflow-hidden relative ${aspect}`}>
+      <div className={`overflow-hidden ${PROJECT_FRAME_VIEWPORT_CLASS}`}>
         <img
           src={project.preview}
           alt={`${project.title} preview`}
@@ -155,15 +153,20 @@ function ProjectCard({ project, index, large = false }: ProjectCardProps) {
   ) : hasLiveUrl ? (
     <BrowserFrame src={project.url} title={project.title} />
   ) : (
-    <div className="browser-frame">
-      <div className="browser-header">
+    <div className="browser-frame w-full">
+      <div className="browser-header flex h-10 shrink-0 items-center gap-2 px-4">
         <div className="flex gap-2">
           <div className="browser-dot bg-[#FF5F57]" />
           <div className="browser-dot bg-[#FFBD2E]" />
           <div className="browser-dot bg-[#28C840]" />
         </div>
+        <div className="flex-1 min-w-0 mx-3 bg-chrome-address/25 rounded-md px-3 py-1">
+          <span className="text-[10px] text-on-surface-variant/50 font-medium truncate block" title={chromeLabel}>
+            {chromeLabel}
+          </span>
+        </div>
       </div>
-      <div className={`overflow-hidden relative ${aspect}`}>
+      <div className={`overflow-hidden ${PROJECT_FRAME_VIEWPORT_CLASS}`}>
         <BrandedFallback title={project.title} color={project.color} />
       </div>
     </div>
@@ -179,7 +182,7 @@ function ProjectCard({ project, index, large = false }: ProjectCardProps) {
     >
       <div className="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8">
         <div className="min-w-0 flex-1 max-w-2xl">
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex flex-wrap items-center gap-3 mb-3">
             <span className="text-primary font-bold uppercase tracking-[0.2em] text-[11px]">
               {project.tag}
             </span>
@@ -190,7 +193,7 @@ function ProjectCard({ project, index, large = false }: ProjectCardProps) {
             )}
           </div>
           <h3
-            className={`font-headline font-bold ${
+            className={`font-headline font-bold break-words ${
               large ? "text-3xl md:text-4xl" : "text-2xl"
             } ${project.subtitle ? "mb-1" : "mb-2.5"}`}
           >
@@ -223,19 +226,7 @@ function ProjectCard({ project, index, large = false }: ProjectCardProps) {
         </div>
       </div>
 
-      {useTilt ? (
-        <TiltCard
-          borderRadius={16}
-          glowColor={glowColor}
-          glowSize="50%"
-        >
-          {previewContent}
-        </TiltCard>
-      ) : (
-        <div className="transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:shadow-hover">
-          {previewContent}
-        </div>
-      )}
+      <div className="w-full">{previewContent}</div>
     </motion.div>
   );
 }
@@ -304,13 +295,9 @@ export default function Projects() {
               </a>
             </div>
 
-            <TiltCard
-              borderRadius={12}
-              glowColor="rgba(255, 0, 122, 0.4)"
-              glowSize="45%"
-            >
+            <div className="w-full">
               <BrowserFrame src={brandProject.url} title={brandProject.title} />
-            </TiltCard>
+            </div>
           </motion.div>
         </div>
       </section>
