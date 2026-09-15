@@ -1,11 +1,18 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "motion/react";
-import { Mail, Phone, MessageCircle, Send } from "lucide-react";
+import { Mail, Phone, MessageSquareText, MessageCircle, Send } from "lucide-react";
 import QRCode from "react-qr-code";
 import { usePageMeta } from "@/src/lib/utils";
 
-const CONTACT_EMAIL = "michelle@creativesolutionspartners.com";
+const CONTACT_EMAIL = "michelle@bizboost.agency";
+const AGENCY_EMAIL = "michelle@thebizboostagency.com";
 const MAILTO_BASE = `mailto:${CONTACT_EMAIL}`;
+const PHONE_DISPLAY = "(501) 913-5473";
+const PHONE_E164 = "+15019135473";
+const TEXT_KEYWORD = "BOOST";
+// "?&body=" is the form that pre-fills the message on both iOS and Android.
+const SMS_HREF = `sms:${PHONE_E164}?&body=${TEXT_KEYWORD}`;
+const TEL_HREF = `tel:${PHONE_E164}`;
 const PRIMARY_QR = "#ff007a";
 const TOPICS = [
   "Brand Strategy",
@@ -151,22 +158,51 @@ export default function Contact() {
                     >
                       {CONTACT_EMAIL}
                     </a>
+                    <a
+                      href={`mailto:${AGENCY_EMAIL}`}
+                      className="mt-1 block text-base font-semibold text-white/75 break-all underline decoration-primary/30 underline-offset-2 transition-colors hover:text-primary hover:decoration-primary"
+                    >
+                      {AGENCY_EMAIL}
+                    </a>
                   </div>
                 </div>
-                {[
-                  { icon: <Phone size={22} />, label: "Phone", value: "501-913-5473" },
-                  { icon: <MessageCircle size={22} />, label: "Quick Note", value: "Email or text anytime. Free consults, always." },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-start gap-5">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/8 text-primary">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h3 className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-white/70">{item.label}</h3>
-                      <p className="text-lg font-bold text-white">{item.value}</p>
-                    </div>
+                <div className="flex items-start gap-5">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/8 text-primary">
+                    <Phone size={22} />
                   </div>
-                ))}
+                  <div>
+                    <h3 className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-white/70">Phone</h3>
+                    <a
+                      href={TEL_HREF}
+                      className="text-lg font-bold text-white underline decoration-primary/40 underline-offset-2 transition-colors hover:text-primary hover:decoration-primary"
+                    >
+                      {PHONE_DISPLAY}
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-5">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/8 text-primary">
+                    <MessageSquareText size={22} />
+                  </div>
+                  <div>
+                    <h3 className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-white/70">Text</h3>
+                    <a
+                      href={SMS_HREF}
+                      className="text-lg font-bold text-white underline decoration-primary/40 underline-offset-2 transition-colors hover:text-primary hover:decoration-primary"
+                    >
+                      Text {TEXT_KEYWORD} to {PHONE_DISPLAY}
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-5">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/8 text-primary">
+                    <MessageCircle size={22} />
+                  </div>
+                  <div>
+                    <h3 className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-white/70">Quick Note</h3>
+                    <p className="text-lg font-bold text-white">Email or text anytime. A human replies within one business day.</p>
+                  </div>
+                </div>
               </div>
 
               <div className="rounded-2xl border border-primary/25 bg-white p-6 shadow-ambient dark:border-primary/35 dark:bg-white">

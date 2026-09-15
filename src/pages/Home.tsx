@@ -35,7 +35,7 @@ const growthSteps = [
 ];
 
 export default function Home() {
-  usePageMeta(undefined, "I'm Michelle Williams, a digital strategist, systems builder, and founder. 16+ years turning strategy, web development, automation, and AI into measurable business results.");
+  usePageMeta(undefined, "I'm Michelle Williams, a digital strategist, systems builder, and founder. 17+ years turning strategy, web development, automation, and AI into measurable business results.");
 
   return (
     <div className="pt-36 md:pt-44">
@@ -74,7 +74,7 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg md:text-xl text-on-surface-variant font-medium leading-relaxed mb-14 max-w-2xl"
           >
-            I've spent 16+ years in sales leadership, paired with a deep obsession for scalable technology, AI, and automation, and I turn that into systems that produce measurable results.
+            I've spent 17+ years in sales leadership, paired with a deep obsession for scalable technology, AI, and automation, and I turn that into systems that produce measurable results.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -157,10 +157,10 @@ export default function Home() {
               </h2>
               <div className="space-y-6 text-lg font-medium leading-[1.8] text-white/88">
                 <p>
-                  My career started where business meets people: on the sales floor. In 16+ years I've led high-performing teams at Verizon, Best Buy, and Apple, and I've sold enterprise solutions at Comcast Business. That path gave me an uncommon skill set: I see a business from the customer's first touch all the way through the systems that power it.
+                  My career started where business meets people: on the sales floor. In 17+ years I've led high-performing teams at Verizon, Best Buy, and Apple, and I've sold enterprise solutions at Comcast Business. That path gave me an uncommon skill set: I see a business from the customer's first touch all the way through the systems that power it.
                 </p>
                 <p>
-                  Today I work at the intersection of strategy, technology, and execution. I'm a Strategic Partner at Creative Solutions Partners, and I'm building my own agency, Biz Boost, from the ground up. Every system I architect is designed to do one thing: generate real, measurable revenue.
+                  Today I work at the intersection of strategy, technology, and execution as the founder of Biz Boost Agency, a dedicated growth partner for founders and growing teams. I take businesses from research to launch to operations: strategy, brand, full-stack builds, AI agents, and automation, then hand owners the keys. Every system I architect is designed to do one thing: generate real, measurable revenue.
                 </p>
               </div>
               <div className="mt-8">

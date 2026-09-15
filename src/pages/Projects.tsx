@@ -8,8 +8,10 @@ const brandProject = {
   title: "Biz Boost Agency",
   tag: "Agency Platform, Founded & Built by Me",
   description:
-    "The home base. Biz Boost Agency is where I build sites that convert and growth systems for businesses, while creating opportunities for developers to contribute, collaborate, and grow under a strong brand and strategic direction.",
+    "The home base. Biz Boost Agency is the growth partner I founded: research to launch to operations, one dedicated partner invested in the client's growth. We build the websites, brand systems, AI agents, and automations behind the idea, then teach owners to run what we built.",
   url: "https://thebizboostagency.com/",
+  // thebizboostagency.com sends X-Frame-Options: DENY, so the live iframe can't render here.
+  preview: "/bizboost-agency-preview.jpg",
   color: "#ff007a",
 };
 
@@ -26,20 +28,21 @@ const projects = [
     featured: true,
   },
   {
-    title: "StackWise",
+    title: "AgentSpark",
     tag: "AI Product",
     badge: "AI-Powered",
     description:
-      "An AI-powered tool that generates personalized technology stacks based on user input, helping builders, founders, and teams quickly identify the right tools, frameworks, and architecture for their projects. It combines user experience, logic, and AI-driven recommendations into a practical, scalable solution.",
-    url: "https://stackwise-ghw44nfo.manus.space",
-    color: "#0d0d1a",
+      "A neurodivergent-friendly learning app that teaches AI agent architecture, prompt engineering, and real-world automation workflows through gamified one-minute quests. Built to make a dense, fast-moving topic approachable: short wins, sensory-friendly design, and a prompt library learners can put to work immediately.",
+    url: "https://agent-spark-liart.vercel.app/",
+    color: "#1a0b2e",
     featured: true,
   },
   {
     title: "Creative Solutions Partners",
     tag: "Platform",
+    badge: "Launched",
     description:
-      "Architected and built a scalable digital platform for a multi-vertical business spanning health, wealth, and technology.\n\nThis wasn't a typical website build—it was a strategic system designed to drive revenue, support partner distribution, and position the brand as a premium, trusted solution provider.\n\nFrom information architecture to automation, every layer was built to convert complexity into clarity and growth.",
+      "Architected and built a scalable digital platform for a multi-vertical business spanning health, wealth, and technology.\n\nThis wasn't a typical website build—it was a strategic system designed to drive revenue, support partner distribution, and position the brand as a premium, trusted solution provider.\n\nFrom information architecture to automation, every layer was built to convert complexity into clarity and growth. The platform is live and the engagement is complete.",
     url: "https://www.creativesolutionspartners.com/",
     color: "#008080",
     featured: true,
@@ -54,22 +57,33 @@ const projects = [
     featured: true,
   },
   {
+    title: "WILDPOST",
+    tag: "Vertical SaaS",
+    badge: "Early Access",
+    description:
+      "The social operating system for the outdoors: a platform that turns guides, charters, and outfitters into media brands. Social feeds, subscriptions, merch, predictive AI, and instant content generation combine to turn a full calendar into year-round revenue.",
+    url: "https://wildpost.kimi.page/",
+    color: "#1c1917",
+    featured: true,
+  },
+  {
     title: "Diamond Home Services",
     tag: "Local Business",
     badge: "Client Website",
     description:
-      "A conversion-focused website for a local lawncare and home cleaning business, built to showcase services, establish trust, and make it easy for customers to learn what’s offered and get in touch.",
-    url: "https://diamondhomeservices.vercel.app",
-    color: "#1e6b4f",
+      "A conversion-focused website for Diamond Home Services LLC, a family-owned company running two specialist crews under one trusted name: Diamond Cutz for lawn and landscaping, and A Diamond Girl for home cleaning. Built to showcase both services, establish trust through testimonials, and make booking either crew, or both, effortless.",
+    url: "https://diamondhome.biz/",
+    color: "#0b2545",
     featured: false,
   },
   {
-    title: "Creative Solutions Insights",
-    tag: "AI Content Hub",
+    title: "Biz Boost Blog",
+    tag: "Editorial Platform",
+    badge: "Agency Publication",
     description:
-      "Automated content platform created to surface relevant business, health, and technology insights while reinforcing authority and discoverability.",
-    url: "https://creativesolutionsinsights.com/",
-    color: "#1a1a2e",
+      "The editorial wing of Biz Boost Agency. Practical guidance on websites, branding, local SEO, lead generation, customer experience, operations, and automation, published to build authority, drive discoverability, and feed the agency's pipeline.",
+    url: "https://bizboost.blog/",
+    color: "#111111",
     featured: false,
   },
   {
@@ -296,7 +310,7 @@ export default function Projects() {
             </div>
 
             <div className="w-full">
-              <BrowserFrame src={brandProject.url} title={brandProject.title} />
+              <BrowserFrame src={brandProject.url} title={brandProject.title} preview={brandProject.preview} />
             </div>
           </motion.div>
         </div>

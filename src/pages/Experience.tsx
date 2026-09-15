@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { usePageMeta } from "@/src/lib/utils";
 
 export default function Experience() {
-  usePageMeta("Experience", "I've spent 16+ years building, leading, and solving real problems: from consumer sales to enterprise strategy to digital systems that generate measurable revenue.");
+  usePageMeta("Experience", "I've spent 17+ years building, leading, and solving real problems: from consumer sales to enterprise strategy to digital systems that generate measurable revenue.");
 
   return (
     <div className="pt-36 md:pt-44 pb-0">
@@ -27,7 +27,7 @@ export default function Experience() {
             transition={{ duration: 0.4, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="text-[clamp(2.5rem,6vw,4.25rem)] font-headline font-extrabold leading-[1.12] tracking-tight text-on-surface mb-6 max-w-3xl text-balance break-words"
           >
-            I've spent 16+ years building, leading, and{" "}
+            I've spent 17+ years building, leading, and{" "}
             <span className="text-primary">solving real problems.</span>
           </motion.h1>
           <motion.p
@@ -61,13 +61,13 @@ export default function Experience() {
                   I moved into the enterprise space at Comcast Business, working with mid-market and enterprise clients and translating complex technology into real business outcomes. That stretch widened my lens from transactions to systems, and how the right infrastructure turns operations into revenue.
                 </p>
                 <p>
-                  Today I operate at the intersection of strategy, technology, and execution.
+                  Most recently, I partnered with Creative Solutions Partners as a strategic partner leading their digital initiatives: brand strategy, web experiences, automation systems, and AI-driven infrastructure built for scalable, revenue-generating operations. That platform is built, launched, and running, and the engagement is complete.
                 </p>
                 <p>
-                  At Creative Solutions Partners, I serve as a strategic partner leading digital initiatives: building and optimizing brand strategy, web experiences, automation systems, and AI-driven infrastructure that support scalable, revenue-generating operations.
+                  Today I operate at the intersection of strategy, technology, and execution as the founder of Biz Boost Agency, a dedicated growth partner based in Yulee, Florida. I take businesses from research to launch to operations: market strategy, brand and product architecture, full-stack builds, AI agents, and automation. Then I teach owners and their teams to run it all without me.
                 </p>
                 <p>
-                  I'm also the founder of Biz Boost Agency, where I build sites that convert and growth systems for businesses, and I create opportunities for other developers to contribute, collaborate, and grow under a strong brand and strategic direction.
+                  Along the way, I create opportunities for other developers to contribute, collaborate, and grow under a strong brand and strategic direction.
                 </p>
               </div>
 
@@ -84,7 +84,7 @@ export default function Experience() {
               </motion.div>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                {["Strategic Partner", "Founder", "Digital Operator", "Systems Architect", "Growth Strategist"].map((badge) => (
+                {["Founder", "Growth Partner", "Full-Stack Builder", "AI Agent Architect", "Systems Architect"].map((badge) => (
                   <span key={badge} className="strategy-pill !text-white !border-white/40 !bg-white/10">{badge}</span>
                 ))}
               </div>
