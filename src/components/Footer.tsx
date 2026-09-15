@@ -3,7 +3,7 @@ import { ExternalLink } from "lucide-react";
 
 const externalLinks = [
   { name: "Biz Boost Agency", href: "https://thebizboostagency.com/" },
-  { name: "Creative Solutions Partners", href: "https://www.creativesolutionspartners.com/" },
+  { name: "Biz Boost Blog", href: "https://bizboost.blog/" },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/mreneewilliams/" },
 ];
 

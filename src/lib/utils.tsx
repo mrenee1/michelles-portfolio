@@ -14,7 +14,7 @@ export const SITE_ORIGIN = "https://mreneewilliams.com";
 const BRAND = "Michelle Williams";
 
 const DEFAULT_DESCRIPTION =
-  "I'm Michelle Williams, a digital strategist, systems builder, and founder. 16+ years turning strategy, web development, automation, and AI into measurable business results.";
+  "I'm Michelle Williams, a digital strategist, systems builder, and founder. 17+ years turning strategy, web development, automation, and AI into measurable business results.";
 
 function setMetaTag(attr: "name" | "property", key: string, content: string) {
   const selector = attr === "name" ? `meta[name="${key}"]` : `meta[property="${key}"]`;
