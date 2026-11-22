@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 
 const externalLinks = [
-  { name: "Biz Boost Agency", href: "https://thebizboostagency.com/" },
+  { name: "Biz Boost Agency", href: "https://bizboost-kimi.vercel.app/" },
   { name: "Biz Boost Blog", href: "https://bizboost.blog/" },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/mreneewilliams/" },
 ];
