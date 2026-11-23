@@ -9,7 +9,7 @@ const brandProject = {
   tag: "Agency Platform, Founded & Built by Me",
   description:
     "The home base. Biz Boost Agency is the growth partner I founded: research to launch to operations, one dedicated partner invested in the client's growth. We build the websites, brand systems, AI agents, and automations behind the idea, then teach owners to run what we built.",
-  url: "https://bizboost-kimi.vercel.app/", // TEMP: custom domain thebizboostagency.com is down; restore when back up
+  url: "https://biz-boost-agency.vercel.app/", // secondary agency site (main site is thebizboostagency.com)
   // thebizboostagency.com sends X-Frame-Options: DENY, so the live iframe can't render here.
   preview: "/bizboost-agency-preview.jpg",
   color: "#ff007a",
